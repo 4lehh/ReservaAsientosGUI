@@ -1,7 +1,9 @@
 package Modelo;
+import Vistas.*;
+import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("hola");
+        SwingUtilities.invokeLater(() -> new VentanaFormulario());
     }
 }
