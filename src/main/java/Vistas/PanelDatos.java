@@ -9,9 +9,11 @@ public class PanelDatos extends JPanel implements ActionListener {
     // -------- Paneles ------------
     JPanel panel_superior;
     JPanel panel_inferior;
+    JPanel panel_preguntas;
 
     Asientos asientos;
 
+    JButton boton_eliminar;
     JButton boton_cualquiera;
     public PanelDatos(){
         this.setLayout(new BorderLayout());
@@ -43,7 +45,7 @@ public class PanelDatos extends JPanel implements ActionListener {
         this.add(panel_inferior, BorderLayout.CENTER);
 
         //------------- CAMPOS DE TEXTO------------
-        JPanel panel_preguntas = new JPanel();
+        panel_preguntas = new JPanel();
         panel_preguntas.setOpaque(false);
 
         //panel_preguntas.setLayout(new BoxLayout(panel_preguntas, BoxLayout.Y_AXIS));
@@ -159,6 +161,11 @@ public class PanelDatos extends JPanel implements ActionListener {
         panel_preguntas.add(boton_cualquiera);
         boton_cualquiera.setBounds(50,30,40,40);
         boton_cualquiera.addActionListener(this);
+
+        boton_eliminar = new JButton("Boton para eliminar panel");
+        panel_preguntas.add(boton_eliminar);
+        boton_eliminar.setBounds(60,50,40,40);
+        boton_eliminar.addActionListener(this);
     }
 
     @Override
@@ -166,5 +173,16 @@ public class PanelDatos extends JPanel implements ActionListener {
         if (e.getSource() == boton_cualquiera){
             asientos.mostrarAsientos();
         }
+        if(e.getSource() == boton_eliminar){
+            panel_inferior.remove(panel_preguntas);
+            repaint();
+        }
+    }
+
+    public void paintComponent(Graphics g){
+        super.paintComponent(g);
+
+
+
     }
 }
