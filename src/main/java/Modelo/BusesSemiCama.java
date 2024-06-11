@@ -6,8 +6,8 @@ public class BusesSemiCama extends Buses implements Bus{
 
     }
 
-    public int tipoAsientos(){
-        return 2;
+    public String tipoAsientos(){
+        return "Semi Cama";
     }
 
     public int cantidadAsientos(){

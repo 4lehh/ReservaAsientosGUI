@@ -8,8 +8,8 @@ public class BusesSalonCama extends Buses implements Bus{
 
     }
 
-    public int tipoAsientos(){
-        return 3;
+    public String tipoAsientos(){
+        return "Salon Cama";
     }
 
     public int cantidadAsientos(){

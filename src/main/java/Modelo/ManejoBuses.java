@@ -18,22 +18,21 @@ public class ManejoBuses {
         this.precio = ruta.getPrecio();
         this.buses_ruta = new ArrayList<Buses>();
 
-
+        this.buses_ruta = getBuses();
         System.out.println("Nombre: " + nombre + ". Ruta: " + nombreDestino + ". Precio: " + precio);
-
-
     }
 
     public ArrayList<Buses> getBuses(){
+        ArrayList<Buses> m = new ArrayList<Buses>();
         for(int i = 0; i < 10; i++){
             if(i == 2){
-                buses_ruta.add(new BusesSalonCama());
+                m.add(new BusesSalonCama());
             } else if(i%4 == 0){
-                buses_ruta.add(new BusesSemiCama());
+                m.add(new BusesSemiCama());
             } else {
-                buses_ruta.add(new BusesNormal());
+                m.add(new BusesNormal());
             }
         }
-        return buses_ruta;
+        return m;
     }
 }

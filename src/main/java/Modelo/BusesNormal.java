@@ -8,8 +8,8 @@ public class BusesNormal extends Buses implements Bus {
 
     }
 
-    public int tipoAsientos(){
-        return 1;
+    public String tipoAsientos(){
+        return "Normal";
     }
 
     public int cantidadAsientos(){

@@ -5,8 +5,9 @@ public abstract class Buses {
 
     }
 
-    public abstract int tipoAsientos();
+    public abstract String tipoAsientos();
 
     public abstract int cantidadAsientos();
+
 
 }

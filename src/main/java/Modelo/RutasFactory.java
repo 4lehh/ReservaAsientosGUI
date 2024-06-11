@@ -29,7 +29,20 @@ public class RutasFactory {
         } else if(punto_inicio.equals(Rutas.CONCE_ANGOL.getLlegada()) && punto_final.equals(Rutas.CONCE_ANGOL.getPartida())){
             this.precio = Rutas.CONCE_ANGOL.precioRuta();
             return "Angol - Concepcion";
-        } else {
+        } else if(punto_inicio.equals(Rutas.CHIGUA_SANTAJUANA.getPartida()) && punto_final.equals(Rutas.CHIGUA_SANTAJUANA.getLlegada())){
+            this.precio = Rutas.CHIGUA_SANTAJUANA   .precioRuta();
+            return "Concepcion - Angol";
+        } else if(punto_inicio.equals(Rutas.CHIGUA_SANTAJUANA.getLlegada()) && punto_final.equals(Rutas.CHIGUA_SANTAJUANA.getPartida())) {
+            this.precio = Rutas.CHIGUA_SANTAJUANA.precioRuta();
+            return "Angol - Concepcion";
+        } else if(punto_inicio.equals(Rutas.CHIGUA_SANTAJUANA.getPartida()) && punto_final.equals(Rutas.CHIGUA_SANTAJUANA.getLlegada())){
+            this.precio = Rutas.CHIGUA_SANTAJUANA   .precioRuta();
+            return "Concepcion - Angol";
+        } else if(punto_inicio.equals(Rutas.CHIGUA_SANTAJUANA.getLlegada()) && punto_final.equals(Rutas.CHIGUA_SANTAJUANA.getPartida())) {
+            this.precio = Rutas.CHIGUA_SANTAJUANA.precioRuta();
+            return "Angol - Concepcion";
+        }
+        else {
             return "";
         }
     }

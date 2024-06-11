@@ -7,12 +7,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class PanelDatos extends JPanel implements ActionListener {
     // -------- Paneles ------------
     JPanel panel_superior;
     JPanel panel_inferior;
     JPanel panel_preguntas;
+    JPanel panel_buses;
 
     Asientos asientos;
 
@@ -22,10 +25,14 @@ public class PanelDatos extends JPanel implements ActionListener {
     JTextField nombre_textfield;
     JComboBox origenComboBox;
     JComboBox destinoComboBox;
+    JDateChooser dateChooser;
     //---------DATOS USUARIO------
     String nombre;
     String origen;
     String destino;
+    String fecha_simple;
+
+    Timer comprobar_datos;
     public PanelDatos(){
         this.setLayout(new BorderLayout());
         this.setBorder(BorderFactory.createLineBorder(Color.BLUE, 3));
@@ -89,7 +96,7 @@ public class PanelDatos extends JPanel implements ActionListener {
         panel_preguntas.add(panel_origen);
 
         JLabel origen_label = new JLabel("Origen: ");
-        String[] origenes = {"Angol","Arauco","Bulnes","Cabrero","Cañete","Carampangue","Cauquenes","Chiguayante","Chillán","Cobquecura","Coelemu","Concepcion", "Coronel","Curanilahue","Hualqui","Lagunillas","Laja","Lebu","Los Álamos","Los Ángeles","Lota","Mulchén","Nacimiento","Ñipas","Penco","Quillón","Quirihue","Rancagua","Renaico","San Carlos","San Nicolas","San Pedro de la Paz","Santa Bárbara","Santa Juana","Santiago","Talcahuano","Tomé","Trehuaco","Valparaíso","Villuco","Viña Del Mar", "Yumbel"};
+        String[] origenes = {"Angol","Chiguayante","Concepcion","Los Ángeles","Nacimiento","Santa Juana","Santiago"};
         origenComboBox = new JComboBox<>(origenes);
         origen_label.setFont(new Font("Arial", Font.BOLD, 16));
         panel_origen.add(origen_label);
@@ -105,7 +112,7 @@ public class PanelDatos extends JPanel implements ActionListener {
         panel_preguntas.add(panel_destino);
 
         JLabel destino_label = new JLabel("Destino: ");
-        String[] destinos = {"Angol","Arauco","Bulnes","Cabrero","Cañete","Carampangue","Cauquenes","Chiguayante","Chillán","Cobquecura","Coelemu","Concepcion", "Coronel","Curanilahue","Hualqui","Lagunillas","Laja","Lebu","Los Álamos","Los Ángeles","Lota","Mulchén","Nacimiento","Ñipas","Penco","Quillón","Quirihue","Rancagua","Renaico","San Carlos","San Nicolas","San Pedro de la Paz","Santa Bárbara","Santa Juana","Santiago","Talcahuano","Tomé","Trehuaco","Valparaíso","Villuco","Viña Del Mar", "Yumbel"};
+        String[] destinos = {"Angol","Chiguayante","Concepcion","Los Ángeles","Nacimiento","Santa Juana","Santiago"};
         destino_label.setFont(new Font("Arial", Font.BOLD, 16));
         panel_destino.add(destino_label);
         destinoComboBox = new JComboBox(destinos);
@@ -124,7 +131,7 @@ public class PanelDatos extends JPanel implements ActionListener {
         fecha_label.setFont(new Font("Arial", Font.BOLD, 16));
         panel_fecha.add(fecha_label);
 
-        JDateChooser dateChooser = new JDateChooser();
+        dateChooser = new JDateChooser();
         dateChooser.setPreferredSize(new Dimension(300, 40));
         panel_fecha.add(dateChooser);
 
@@ -135,8 +142,12 @@ public class PanelDatos extends JPanel implements ActionListener {
 
         boton_siguiente = new JButton("Siguiente");
         panel_preguntas.add(boton_siguiente);
-        boton_siguiente.setBounds(300,300,100,40);
+        boton_siguiente.setEnabled(false);
+        boton_siguiente.setBounds(300,360,100,40);
         boton_siguiente.addActionListener(this);
+
+        comprobar_datos = new Timer(100, this);
+        comprobar_datos.start();
     }
 
     @Override
@@ -148,18 +159,28 @@ public class PanelDatos extends JPanel implements ActionListener {
             nombre = nombre_textfield.getText();
             origen = (String) origenComboBox.getSelectedItem();
             destino = (String) destinoComboBox.getSelectedItem();
+            Date fecha_completa = dateChooser.getDate();
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+            fecha_simple = simpleDateFormat.format(fecha_completa);
 
-            ManejoBuses m = new ManejoBuses(nombre, origen, destino);
-
+            new ManejoBuses(nombre, origen, destino);
+            System.out.println(fecha_simple);
             panel_inferior.remove(panel_preguntas);
+
+            panel_buses = new PanelSeleccionBuses();
+            panel_inferior.add(panel_buses);
+
             repaint();
+        }
+        if(e.getSource() == comprobar_datos){
+            if(!nombre_textfield.getText().isEmpty() && origenComboBox.getSelectedItem() != null && destinoComboBox.getSelectedItem() != null && dateChooser.getDate() != null){
+                boton_siguiente.setEnabled(true);
+            }
         }
     }
 
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-
-
 
     }
 }
