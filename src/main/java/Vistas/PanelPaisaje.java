@@ -14,8 +14,9 @@ public class PanelPaisaje extends JPanel {
         // Dimensiones actuales: 780x720
         this.setLayout(new BorderLayout());
         this.setPreferredSize(new Dimension(780,720));
-        this.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
+        // this.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
         this.setBackground(Color.MAGENTA);
+
 
 
         try{
@@ -33,5 +34,10 @@ public class PanelPaisaje extends JPanel {
             Image escalada = bg.getScaledInstance(getWidth(), getHeight(), Image.SCALE_SMOOTH);
             g2d.drawImage(escalada, 0,0,this);
         }
+    }
+
+    public void cambiarImagen(BufferedImage bg){
+        this.bg = bg;
+        repaint();
     }
 }

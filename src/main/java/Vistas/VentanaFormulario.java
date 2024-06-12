@@ -9,7 +9,7 @@ public class VentanaFormulario extends JFrame {
         this.setSize(1280,720);
         this.setTitle("Formulario de Usuario");
         this.setVisible(true);
-        this.setResizable(false);
+        this.setResizable(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         panelPrincipalFormulario = new PanelPrincipalFormulario();

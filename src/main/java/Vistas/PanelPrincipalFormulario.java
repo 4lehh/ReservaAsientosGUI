@@ -13,11 +13,11 @@ public class PanelPrincipalFormulario extends JPanel {
     public PanelPrincipalFormulario(){
         this.setLayout(new BorderLayout());
         this.setBackground(new Color(157, 105, 217));
-        this.setBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
+        // this.setBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
         this.setOpaque(false);
 
-        panelDatos = new PanelDatos();
         panelPaisaje = new PanelPaisaje();
+        panelDatos = new PanelDatos(panelPaisaje);
         this.add(panelDatos, BorderLayout.WEST);
         this.add(panelPaisaje, BorderLayout.CENTER);
 
