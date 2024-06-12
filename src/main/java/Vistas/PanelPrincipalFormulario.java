@@ -7,6 +7,8 @@ public class PanelPrincipalFormulario extends JPanel {
     PanelDatos panelDatos;
     PanelPaisaje panelPaisaje;
 
+    MusicPlayer musica_bg;
+
 
     public PanelPrincipalFormulario(){
         this.setLayout(new BorderLayout());
@@ -19,6 +21,9 @@ public class PanelPrincipalFormulario extends JPanel {
         this.add(panelDatos, BorderLayout.WEST);
         this.add(panelPaisaje, BorderLayout.CENTER);
 
+        musica_bg = new MusicPlayer();
+        musica_bg.play("./src/main/java/Vistas/Sonidos/pilotwings.wav");
+        musica_bg.loop();
     }
 
     public void paintComponent(Graphics g){

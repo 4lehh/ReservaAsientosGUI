@@ -96,7 +96,7 @@ public class PanelDatos extends JPanel implements ActionListener {
         panel_preguntas.add(panel_origen);
 
         JLabel origen_label = new JLabel("Origen: ");
-        String[] origenes = {"Angol","Chiguayante","Concepcion","Los Ángeles","Nacimiento","Santa Juana","Santiago"};
+        String[] origenes = {"Angol", "Chiguayante", "Concepcion", "Nacimiento", "Santa Juana"};
         origenComboBox = new JComboBox<>(origenes);
         origen_label.setFont(new Font("Arial", Font.BOLD, 16));
         panel_origen.add(origen_label);
@@ -112,7 +112,7 @@ public class PanelDatos extends JPanel implements ActionListener {
         panel_preguntas.add(panel_destino);
 
         JLabel destino_label = new JLabel("Destino: ");
-        String[] destinos = {"Angol","Chiguayante","Concepcion","Los Ángeles","Nacimiento","Santa Juana","Santiago"};
+        String[] destinos = {"Angol", "Chiguayante", "Concepcion", "Nacimiento", "Santa Juana"};
         destino_label.setFont(new Font("Arial", Font.BOLD, 16));
         panel_destino.add(destino_label);
         destinoComboBox = new JComboBox(destinos);
@@ -167,7 +167,7 @@ public class PanelDatos extends JPanel implements ActionListener {
             System.out.println(fecha_simple);
             panel_inferior.remove(panel_preguntas);
 
-            panel_buses = new PanelSeleccionBuses();
+            panel_buses = new PanelSeleccionBuses(origen, destino, fecha_simple);
             panel_inferior.add(panel_buses);
 
             repaint();

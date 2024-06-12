@@ -13,12 +13,18 @@ public class ManejoBuses {
     private ArrayList<Buses> buses_ruta;
 
     public ManejoBuses(String nombre, String punto_inicio, String punto_final){
+        // ------------ RUTA -------------
         RutasFactory ruta = new RutasFactory();
         this.nombreDestino = ruta.obtenerRuta(punto_inicio, punto_final);
-        this.precio = ruta.getPrecio();
-        this.buses_ruta = new ArrayList<Buses>();
 
+        // ------------- PRECIO ---------------
+        this.precio = ruta.getPrecio();
+
+        // -------------- BUSES ---------------------
+        this.buses_ruta = new ArrayList<Buses>();
         this.buses_ruta = getBuses();
+
+
         System.out.println("Nombre: " + nombre + ". Ruta: " + nombreDestino + ". Precio: " + precio);
     }
 
