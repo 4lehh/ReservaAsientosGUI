@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class PanelDatos extends JPanel implements ActionListener {
@@ -28,6 +29,9 @@ public class PanelDatos extends JPanel implements ActionListener {
     String origen;
     String destino;
     String fecha_simple;
+
+    // ---------- ARRAYLIST -----------------
+    ArrayList<Buses> buses;
 
     Timer comprobar_datos;
     PanelPaisaje panelPaisaje;
@@ -88,12 +92,18 @@ public class PanelDatos extends JPanel implements ActionListener {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
             fecha_simple = simpleDateFormat.format(fecha_completa);
 
-            new ManejoBuses(nombre, origen, destino);
+            // ------------ Retornar buses -----------------
+            ManejoBuses m = new ManejoBuses(nombre, origen, destino);
+            buses = m.getBuses();
+            String ruta_final = m.getRuta();
+
+
+
             System.out.println(fecha_simple);
             this.remove(panel_inferior);
             this.remove(panel_superior);
 
-            this.add(new PanelSeleccionBuses(nombre, origen, destino, fecha_simple, panelPaisaje));
+            this.add(new PanelSeleccionBuses(nombre, ruta_final, fecha_simple, panelPaisaje));
 
             repaint();
             revalidate();

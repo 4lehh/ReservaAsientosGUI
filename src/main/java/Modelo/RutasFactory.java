@@ -3,70 +3,72 @@ package Modelo;
 public class RutasFactory {
 
     private int precio;
+    public String ruta_final;
 
-    public String obtenerRuta(String punto_inicio, String punto_final){
+    public void obtenerRuta(String punto_inicio, String punto_final) throws RutaInvalidaException{
         if(punto_inicio.equals(Rutas.CONCE_CHIGUA.getPartida()) && punto_final.equals(Rutas.CONCE_CHIGUA.getLlegada())){
             this.precio = Rutas.CONCE_CHIGUA.precioRuta();
-            return "Concepcion - Chiguayante";
+            ruta_final =  "Concepcion - Chiguayante";
         } else if(punto_inicio.equals(Rutas.CONCE_CHIGUA.getLlegada()) && punto_final.equals(Rutas.CONCE_CHIGUA.getPartida())){
             this.precio = Rutas.CONCE_CHIGUA.precioRuta();
-            return "Chiguayante - Concepcion";
+            ruta_final =  "Chiguayante - Concepcion";
         } else if(punto_inicio.equals(Rutas.CONCE_SANTAJUANA.getPartida()) && punto_final.equals(Rutas.CONCE_SANTAJUANA.getLlegada())){
             this.precio = Rutas.CONCE_SANTAJUANA.precioRuta();
-            return "Concepcion - Santa Juana";
+            ruta_final =  "Concepcion - Santa Juana";
         } else if(punto_inicio.equals(Rutas.CONCE_SANTAJUANA.getLlegada()) && punto_final.equals(Rutas.CONCE_SANTAJUANA.getPartida())){
             this.precio = Rutas.CONCE_SANTAJUANA.precioRuta();
-            return "Santa Juana - Concepcion";
+            ruta_final =  "Santa Juana - Concepcion";
         } else if(punto_inicio.equals(Rutas.CONCE_NACIMIENTO.getPartida()) && punto_final.equals(Rutas.CONCE_NACIMIENTO.getLlegada())){
             this.precio = Rutas.CONCE_NACIMIENTO.precioRuta();
-            return "Concepcion - Nacimiento";
+            ruta_final =  "Concepcion - Nacimiento";
         } else if(punto_inicio.equals(Rutas.CONCE_NACIMIENTO.getLlegada()) && punto_final.equals(Rutas.CONCE_NACIMIENTO.getPartida())){
             this.precio = Rutas.CONCE_NACIMIENTO.precioRuta();
-            return "Nacimiento - Concepcion";
+            ruta_final =  "Nacimiento - Concepcion";
         } else if(punto_inicio.equals(Rutas.CONCE_ANGOL.getPartida()) && punto_final.equals(Rutas.CONCE_ANGOL.getLlegada())){
             this.precio = Rutas.CONCE_ANGOL.precioRuta();
-            return "Concepcion - Angol";
+            ruta_final =  "Concepcion - Angol";
         } else if(punto_inicio.equals(Rutas.CONCE_ANGOL.getLlegada()) && punto_final.equals(Rutas.CONCE_ANGOL.getPartida())){
             this.precio = Rutas.CONCE_ANGOL.precioRuta();
-            return "Angol - Concepcion";
+            ruta_final =  "Angol - Concepcion";
         } else if(punto_inicio.equals(Rutas.CHIGUA_SANTAJUANA.getPartida()) && punto_final.equals(Rutas.CHIGUA_SANTAJUANA.getLlegada())){
             this.precio = Rutas.CHIGUA_SANTAJUANA.precioRuta();
-            return "Chiguayante - Santa Juana";
+            ruta_final =  "Chiguayante - Santa Juana";
         } else if(punto_inicio.equals(Rutas.CHIGUA_SANTAJUANA.getLlegada()) && punto_final.equals(Rutas.CHIGUA_SANTAJUANA.getPartida())) {
             this.precio = Rutas.CHIGUA_SANTAJUANA.precioRuta();
-            return "Santa Juana - Chiguayante";
+            ruta_final =  "Santa Juana - Chiguayante";
         } else if(punto_inicio.equals(Rutas.CHIGUA_NACIMIENTO.getPartida()) && punto_final.equals(Rutas.CHIGUA_NACIMIENTO.getLlegada())){
             this.precio = Rutas.CHIGUA_NACIMIENTO.precioRuta();
-            return "Chiguayante - Nacimiento";
+            ruta_final =  "Chiguayante - Nacimiento";
         } else if(punto_inicio.equals(Rutas.CHIGUA_NACIMIENTO.getLlegada()) && punto_final.equals(Rutas.CHIGUA_NACIMIENTO.getPartida())) {
             this.precio = Rutas.CHIGUA_NACIMIENTO.precioRuta();
-            return "Nacimiento - Chiguayante";
+            ruta_final =  "Nacimiento - Chiguayante";
         } else if(punto_inicio.equals(Rutas.CHIGUA_ANGOL.getPartida()) && punto_final.equals(Rutas.CHIGUA_ANGOL.getLlegada())){
             this.precio = Rutas.CHIGUA_ANGOL.precioRuta();
-            return "Chiguayante - Angol";
+            ruta_final =  "Chiguayante - Angol";
         } else if(punto_inicio.equals(Rutas.CHIGUA_ANGOL.getLlegada()) && punto_final.equals(Rutas.CHIGUA_ANGOL.getPartida())) {
             this.precio = Rutas.CHIGUA_NACIMIENTO.precioRuta();
-            return "Angol - Chiguayante";
+            ruta_final =  "Angol - Chiguayante";
         } else if(punto_inicio.equals(Rutas.SANTAJUANA_NACIMIENTO.getPartida()) && punto_final.equals(Rutas.SANTAJUANA_NACIMIENTO.getLlegada())){
             this.precio = Rutas.SANTAJUANA_NACIMIENTO.precioRuta();
-            return "Santa Juana - Nacimiento";
+            ruta_final =  "Santa Juana - Nacimiento";
         } else if(punto_inicio.equals(Rutas.SANTAJUANA_NACIMIENTO.getLlegada()) && punto_final.equals(Rutas.SANTAJUANA_NACIMIENTO.getPartida())) {
             this.precio = Rutas.SANTAJUANA_NACIMIENTO.precioRuta();
-            return "Nacimiento - Santa Juana";
+            ruta_final =  "Nacimiento - Santa Juana";
         } else if(punto_inicio.equals(Rutas.SANTAJUANA_ANGOL.getPartida()) && punto_final.equals(Rutas.SANTAJUANA_ANGOL.getLlegada())){
             this.precio = Rutas.SANTAJUANA_ANGOL.precioRuta();
-            return "Santa Juana - Angol";
+            ruta_final =  "Santa Juana - Angol";
         } else if(punto_inicio.equals(Rutas.SANTAJUANA_ANGOL.getLlegada()) && punto_final.equals(Rutas.SANTAJUANA_ANGOL.getPartida())) {
             this.precio = Rutas.SANTAJUANA_ANGOL.precioRuta();
-            return "Angol - Santa Juana";
+            ruta_final =  "Angol - Santa Juana";
         } else if(punto_inicio.equals(Rutas.NACIMIENTO_ANGOL.getPartida()) && punto_final.equals(Rutas.NACIMIENTO_ANGOL.getLlegada())){
             this.precio = Rutas.NACIMIENTO_ANGOL.precioRuta();
-            return "Nacimiento - Angol";
+            ruta_final =  "Nacimiento - Angol";
         } else if(punto_inicio.equals(Rutas.NACIMIENTO_ANGOL.getLlegada()) && punto_final.equals(Rutas.NACIMIENTO_ANGOL.getPartida())) {
             this.precio = Rutas.NACIMIENTO_ANGOL.precioRuta();
-            return "Angol - Nacimiento";
+            ruta_final =  "Angol - Nacimiento";
         } else {
-            return "";
+            ruta_final = "";
+            throw new RutaInvalidaException("Seleccione una ruta valida.");
         }
     }
 

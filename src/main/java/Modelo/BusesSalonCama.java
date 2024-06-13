@@ -2,12 +2,18 @@ package Modelo;
 
 import javax.swing.*;
 import java.awt.*;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.time.LocalTime;
 
 public class BusesSalonCama extends Buses{
+    private LocalTime hora_partida;
+    public BusesSalonCama(LocalTime hora_partida){
+        this.hora_partida = hora_partida;
+    }
 
-    public BusesSalonCama(){
-
+    public LocalTime getHora_partida(){
+        return hora_partida;
     }
 
     public String tipoAsientos(){

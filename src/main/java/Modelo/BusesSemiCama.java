@@ -2,11 +2,16 @@ package Modelo;
 
 import javax.swing.*;
 import java.awt.*;
+import java.time.LocalTime;
 
 public class BusesSemiCama extends Buses{
+    private LocalTime hora_partida;
+    public BusesSemiCama(LocalTime hora){
+        hora_partida = hora;
 
-    public BusesSemiCama(){
-
+    }
+    public LocalTime getHora_partida(){
+        return hora_partida;
     }
 
     public String tipoAsientos(){

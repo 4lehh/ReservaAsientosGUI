@@ -2,12 +2,17 @@ package Modelo;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
+import java.time.LocalTime;
 
-public class BusesNormal extends Buses {
+public class Bus1Piso extends Buses {
+    private LocalTime hora_partida;
 
-    public BusesNormal(){
+    public Bus1Piso(LocalTime hora){
+        hora_partida = hora;
+    }
 
+    public LocalTime getHora_partida(){
+        return hora_partida;
     }
 
     public String tipoAsientos(){
