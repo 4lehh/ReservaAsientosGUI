@@ -8,10 +8,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import Modelo.*;
 
 public class PanelAsientos extends JPanel {
-    // ----------- Array Botones -------------
-    private ArrayList<Botones_Asientos> botones;
 
     // -------------- BG -----------------
     private BufferedImage bg;
@@ -23,9 +22,7 @@ public class PanelAsientos extends JPanel {
     private int salto_y = 0;
 
 
-    public PanelAsientos(int numero_asientos) {
-        // --------- Instancias --------------
-        botones = new ArrayList<Botones_Asientos>();
+    public PanelAsientos(ArrayList<Buses> buses_disponibles) {
 
         // -------------- Configurar Panel ---------------------
         this.setLayout(null);
@@ -47,25 +44,14 @@ public class PanelAsientos extends JPanel {
         }
 
         // ----------------  Creacion botones enumerados + agregar al panel----------------
-        for (int i = 0; i < numero_asientos; i++) {
-            switch(i%4){
-                case 0:
-                    botones.add(new Botones_Asientos(i + 1, 20, 20 + salto_y));
-                    break;
-                case 1:
-                    botones.add(new Botones_Asientos(i + 1, 60, 20 + salto_y));
-                    break;
-                case 2:
-                    botones.add(new Botones_Asientos(i + 1, 145, 20 + salto_y));
-                    break;
-                case 3:
-                    botones.add(new Botones_Asientos(i + 1, 185, 20 + salto_y));
-                    salto_y += 50;
-                    break;
+        int contador = 0;
+        for (Buses buses : buses_disponibles) {
+            if(contador == 0){
+                for(JButton botones_buses : buses.tipoAsientos()){
+                    panel_grilla.add(botones_buses);
+                }
             }
-        }
-        for(Botones_Asientos button : botones){
-            panel_grilla.add(button);
+            contador++;
         }
 
         this.add(panel_grilla);

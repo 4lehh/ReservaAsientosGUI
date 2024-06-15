@@ -1,12 +1,15 @@
 package Vistas;
 
+import Modelo.Buses;
+
 import javax.swing.*;
+import java.util.ArrayList;
 
 public class Asientos extends JFrame {
     private PanelAsientos panel_asientos;
 
-    public Asientos(){
-        panel_asientos = new PanelAsientos(36);
+    public Asientos(ArrayList<Buses> buses){
+        panel_asientos = new PanelAsientos(buses);
         this.add(panel_asientos);
     }
 

@@ -1,17 +1,13 @@
 package Modelo;
 
 import javax.swing.*;
+import java.util.ArrayList;
 
 public abstract class Buses {
-    public Buses(){
+    public Buses() {
 
     }
 
-    public abstract String tipoAsientos();
-
-    public abstract int cantidadAsientos();
-
-    public abstract JButton botonAsiento(int pos_x, int pos_y, int numero);
-
+    public abstract ArrayList<JButton> tipoAsientos();
 
 }

@@ -24,15 +24,16 @@ public class ManejoBuses {
     }
 
     public ArrayList<Buses> getBuses(){
+
+        // ---------------- Arreglar -----------------
+
         ArrayList<Buses> m = new ArrayList<Buses>();
         int hora = 8;
         for(int i = 0; i < 6; i++){
-            if(i == 2){
-                m.add(new BusesSalonCama(LocalTime.of(hora, 0)));
-            } else if(i%4 == 0){
-                m.add(new BusesSemiCama(LocalTime.of(hora, 0)));
+            if(i == 4){
+                m.add(new Bus_2(LocalTime.of(8+i, 0)));
             } else {
-                m.add(new BusesNormal(LocalTime.of(hora, 0)));
+                m.add(new Bus_1(LocalTime.of(8+i, 0)));
             }
             hora += 2;
         }

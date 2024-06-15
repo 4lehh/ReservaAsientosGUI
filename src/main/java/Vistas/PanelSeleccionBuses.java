@@ -1,5 +1,7 @@
 package Vistas;
 
+import Modelo.Bus_1;
+import Modelo.Buses;
 import Modelo.PanelesFactory;
 import Modelo.Rutas;
 
@@ -11,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class PanelSeleccionBuses extends JPanel implements ActionListener {
     Asientos asientos;
@@ -31,7 +34,8 @@ public class PanelSeleccionBuses extends JPanel implements ActionListener {
     BufferedImage bg;
 
     PanelesFactory panelesFactory;
-    public PanelSeleccionBuses(String nombre, String ruta_final, String fecha, PanelPaisaje panelPaisaje){
+
+    public PanelSeleccionBuses(String nombre, String ruta_final, String fecha, PanelPaisaje panelPaisaje, ArrayList<Buses> buses){
         this.ruta_final = ruta_final;
         this.fecha = fecha;
         this.nombre = nombre;
@@ -42,7 +46,8 @@ public class PanelSeleccionBuses extends JPanel implements ActionListener {
         // this.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
         this.setBounds(0,0, 500,0);
 
-        asientos = new Asientos();
+
+        asientos = new Asientos(buses);
 
         panel_superior = new JPanel();
         configurarPanel(1);
