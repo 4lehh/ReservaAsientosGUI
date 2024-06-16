@@ -1,9 +1,6 @@
 package Vistas;
 
-import Modelo.Bus_1;
-import Modelo.Buses;
-import Modelo.PanelesFactory;
-import Modelo.Rutas;
+import Modelo.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -13,20 +10,20 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class PanelSeleccionBuses extends JPanel implements ActionListener {
     Asientos asientos;
 
     JPanel panel_superior;
-    JPanel panel_inferior;
-
     JPanel panel_opciones;
     Font font = new Font("Arial", Font.BOLD, 16);
 
     String ruta_final;
     String fecha;
     String nombre;
+    int precio_ruta;
 
     JButton boton_seleccionar;
 
@@ -35,11 +32,17 @@ public class PanelSeleccionBuses extends JPanel implements ActionListener {
 
     PanelesFactory panelesFactory;
 
-    public PanelSeleccionBuses(String nombre, String ruta_final, String fecha, PanelPaisaje panelPaisaje, ArrayList<Buses> buses){
+    ArrayList<Buses> buses;
+    ArrayList<JPanel> paneles;
+    ArrayList<JRadioButton> botones_buses;
+    ButtonGroup buttonGroup;
+    public PanelSeleccionBuses(String nombre, String ruta_final, String fecha, PanelPaisaje panelPaisaje, ArrayList<Buses> buses, int precio_ruta){
         this.ruta_final = ruta_final;
         this.fecha = fecha;
         this.nombre = nombre;
+        this.buses = buses;
         this.panelPaisaje = panelPaisaje;
+        this.precio_ruta = precio_ruta;
 
         this.setLayout(new BorderLayout());
         this.setBackground(Color.PINK);
@@ -52,28 +55,49 @@ public class PanelSeleccionBuses extends JPanel implements ActionListener {
         panel_superior = new JPanel();
         configurarPanel(1);
 
-
-        panel_inferior = new JPanel();
+        panel_opciones = new JPanel();
         configurarPanel(2);
 
-        panel_opciones = new JPanel();
-        configurarPanel(3);
-
-
-        boton_seleccionar = new JButton("Seleccionar asiento");
-        boton_seleccionar.setFocusable(false);
-        panel_opciones.add(boton_seleccionar);
-        boton_seleccionar.setBounds(75,210,200,40);
-        boton_seleccionar.addActionListener(this);
 
         //-----AQUI SE PUEDE MODIFICAR DEPENDIENDO DE LA RUTA
         backgroundRuta(ruta_final);
 
         panelesFactory = new PanelesFactory();
+
+        paneles = new ArrayList<JPanel>();
+        paneles = panelesFactory.crearPaneles(buses, precio_ruta);
+
+        botones_buses = new ArrayList<JRadioButton>();
+        buttonGroup = new ButtonGroup();
+
+        for(JPanel panel : paneles){
+            JRadioButton seleccionar = new JRadioButton("Seleccionar Bus");
+            seleccionar.addActionListener(this);
+            seleccionar.setFocusable(false);
+            seleccionar.setBounds(400, 50, 140,40);
+            botones_buses.add(seleccionar);
+            buttonGroup.add(seleccionar);
+
+            panel.add(seleccionar);
+            panel_opciones.add(panel);
+        }
+
+        boton_seleccionar = new JButton("Seleccionar asiento");
+        boton_seleccionar.setFocusable(false);
+        panel_opciones.add(boton_seleccionar);
+        boton_seleccionar.setBounds(200,210,200,40);
+        boton_seleccionar.addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
+        for(JRadioButton boton : botones_buses){
+            if (e.getSource() == boton){
+                asientos.mostrarAsientos();
+            }
+        }
+
         if (e.getSource() == boton_seleccionar){
             asientos.mostrarAsientos();
         }
@@ -84,8 +108,8 @@ public class PanelSeleccionBuses extends JPanel implements ActionListener {
 
     }
 
-    public void configurarPanel(int i){
-        if(i == 1){
+    public void configurarPanel(int i) {
+        if (i == 1) {
             panel_superior.setLayout(new BorderLayout());
             panel_superior.setPreferredSize(new Dimension(0, 75));
             panel_superior.setBackground(new Color(115, 102, 102));
@@ -93,38 +117,21 @@ public class PanelSeleccionBuses extends JPanel implements ActionListener {
             JLabel titulo = new JLabel("Selección de bus", SwingConstants.CENTER);
             titulo.setFont(new Font("Arial", Font.BOLD, 24));
             titulo.setForeground(Color.WHITE);
-            panel_superior.add(titulo, BorderLayout.CENTER);
+            panel_superior.add(titulo);
+
+            JLabel label_ruta = new JLabel(ruta_final, SwingConstants.CENTER);
+            label_ruta.setFont(new Font("Arial", Font.BOLD, 24));
+            label_ruta.setForeground(Color.WHITE);
+            panel_superior.add(label_ruta, BorderLayout.SOUTH);
             this.add(panel_superior, BorderLayout.NORTH);
         }
 
-        if(i == 2){
-            panel_inferior.setBackground(Color.PINK);
-            // panel_inferior.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
-            panel_inferior.setLayout(new BorderLayout());
-            this.add(panel_inferior, BorderLayout.CENTER);
-        }
-
-        if(i == 3){
-            panel_opciones.setBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
-            panel_opciones.setLayout(null);
+        if (i == 2) {
+            panel_opciones.setLayout(new BoxLayout(panel_opciones, BoxLayout.Y_AXIS));
             panel_opciones.setOpaque(false);
-            panel_opciones.setPreferredSize(new Dimension(500, 0));
-            panel_inferior.add(panel_opciones, BorderLayout.WEST);
+            panel_opciones.setPreferredSize(new Dimension(550, 0));
+            this.add(panel_opciones, BorderLayout.CENTER);
 
-            JLabel recorrido = new JLabel(ruta_final);
-            recorrido.setFont(font);
-            recorrido.setBounds(75,30, 250,40);
-            panel_opciones.add(recorrido);
-
-            JLabel nombre_label = new JLabel("Hola, " + nombre);
-            nombre_label.setFont(font);
-            nombre_label.setBounds(75,90, 250,40);
-            panel_opciones.add(nombre_label);
-
-            JLabel fecha_label = new JLabel(fecha);
-            fecha_label.setFont(font);
-            fecha_label.setBounds(75,150, 150,40);
-            panel_opciones.add(fecha_label);
         }
     }
 
@@ -208,4 +215,6 @@ public class PanelSeleccionBuses extends JPanel implements ActionListener {
 
         panelPaisaje.cambiarImagen(bg);
     }
+
+
 }

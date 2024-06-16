@@ -40,6 +40,10 @@ public class ManejoBuses {
         return m;
     }
 
+    public int getPrecio_ruta(){
+        return this.precio;
+    }
+
     public String getRuta(){
         return nombreDestino;
     }

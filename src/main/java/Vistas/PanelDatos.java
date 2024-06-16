@@ -103,7 +103,9 @@ public class PanelDatos extends JPanel implements ActionListener {
             this.remove(panel_inferior);
             this.remove(panel_superior);
 
-            this.add(new PanelSeleccionBuses(nombre, ruta_final, fecha_simple, panelPaisaje, buses));
+            int precio_ruta = m.getPrecio_ruta();
+
+            this.add(new PanelSeleccionBuses(nombre, ruta_final, fecha_simple, panelPaisaje, buses, precio_ruta));
 
             repaint();
             revalidate();

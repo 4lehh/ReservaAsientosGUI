@@ -67,8 +67,14 @@ public class Bus_2 extends Buses {
         }
     }
 
+    @Override
     public LocalTime getHora_partida(){
         return hora_partida;
+    }
+
+    @Override
+    public String getTipoBus(){
+        return "Bus 2 pisos";
     }
 
     public ArrayList<JButton> tipoAsientos(){
