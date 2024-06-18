@@ -20,7 +20,7 @@ public class PanelPaisaje extends JPanel {
 
 
         try{
-            bg = ImageIO.read(new File("./src/main/java/Vistas/Imagenes/paisaje_bus.png"));
+            bg = ImageIO.read(new File("./src/main/resources/Imagenes/paisaje_bus.png"));
         } catch (IOException e){
             System.out.println(e);
         }

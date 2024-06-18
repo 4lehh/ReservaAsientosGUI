@@ -10,10 +10,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import Modelo.*;
 
-public class PanelAsientos extends JPanel {
+public class PanelAsientos extends JPanel  {
 
     // -------------- BG -----------------
-    private BufferedImage bg;
+    private BufferedImage bg_piso1;
+    private BufferedImage bg_piso2;
 
     // --------- Panel -------------
     private JPanel panel_grilla;
@@ -22,36 +23,35 @@ public class PanelAsientos extends JPanel {
     private int salto_y = 0;
 
 
-    public PanelAsientos(ArrayList<Buses> buses_disponibles) {
+    public PanelAsientos(Buses bus_disponibles) {
 
         // -------------- Configurar Panel ---------------------
         this.setLayout(null);
         this.setOpaque(false);
 
+
         // --------- Panel Grilla ----------------
         panel_grilla = new JPanel();
         panel_grilla.setLayout(null);
-        panel_grilla.setBounds(33,145,240,505);
+        panel_grilla.setBounds(42,145,240,520);
         panel_grilla.setBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
         panel_grilla.setOpaque(false);
 
 
         // --------------- BG --------------------
         try{
-            bg = ImageIO.read(new File("./src/main/java/Vistas/Imagenes/bus-1.png"));
+            bg_piso1 = ImageIO.read(new File("./src/main/resources/Imagenes/bus-1.png"));
+            bg_piso2 = ImageIO.read(new File("./src/main/resources/Imagenes/bus-2.png"));
+
         } catch (IOException e){
             System.out.println(e);
         }
 
         // ----------------  Creacion botones enumerados + agregar al panel----------------
         int contador = 0;
-        for (Buses buses : buses_disponibles) {
-            if(contador == 0){
-                for(JButton botones_buses : buses.tipoAsientos()){
-                    panel_grilla.add(botones_buses);
-                }
-            }
-            contador++;
+
+        for(JButton botones_buses : bus_disponibles.tipoAsientos()){
+            panel_grilla.add(botones_buses);
         }
 
         this.add(panel_grilla);
@@ -61,10 +61,12 @@ public class PanelAsientos extends JPanel {
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
-        if(bg != null){
-            Image escalada = bg.getScaledInstance(getWidth(), getHeight(), Image.SCALE_SMOOTH);
+        if(bg_piso1 != null){
+            Image escalada = bg_piso1.getScaledInstance(320, 720, Image.SCALE_SMOOTH);
             g2d.drawImage(escalada, 0,0,this);
         }
+
+
     }
 
 

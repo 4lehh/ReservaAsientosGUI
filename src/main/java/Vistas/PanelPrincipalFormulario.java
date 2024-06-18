@@ -22,7 +22,7 @@ public class PanelPrincipalFormulario extends JPanel {
         this.add(panelPaisaje, BorderLayout.CENTER);
 
         musica_bg = new MusicPlayer();
-        musica_bg.play("./src/main/java/Vistas/Sonidos/pilotwings.wav");
+        musica_bg.play("./src/main/resources/Sonidos/pilotwings.wav");
         musica_bg.loop();
     }
 

@@ -16,7 +16,7 @@ public class Bus_1 extends Buses {
         hora_partida = hora;
         asientos = new ArrayList<JButton>();
 
-        for(int i = 0; i < 32; i++){
+        for(int i = 0; i < 36; i++){
             if(i < 8){
                 switch(i % 4){
                     case 0:

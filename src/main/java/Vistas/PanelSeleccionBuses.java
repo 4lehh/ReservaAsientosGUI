@@ -12,9 +12,10 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class PanelSeleccionBuses extends JPanel implements ActionListener {
-    Asientos asientos;
+    VentanaAsientos asientos;
 
     JPanel panel_superior;
     JPanel panel_opciones;
@@ -34,9 +35,12 @@ public class PanelSeleccionBuses extends JPanel implements ActionListener {
 
     ArrayList<Buses> buses;
     ArrayList<JPanel> paneles;
+    int[] indices_botones;
     ArrayList<JRadioButton> botones_buses;
     ButtonGroup buttonGroup;
-    public PanelSeleccionBuses(String nombre, String ruta_final, String fecha, PanelPaisaje panelPaisaje, ArrayList<Buses> buses, int precio_ruta){
+
+    int seleccion;
+    public PanelSeleccionBuses(String nombre, String ruta_final, String fecha, PanelPaisaje panelPaisaje, ArrayList<Buses> buses, int precio_ruta, Date fecha_viaje){
         this.ruta_final = ruta_final;
         this.fecha = fecha;
         this.nombre = nombre;
@@ -49,8 +53,6 @@ public class PanelSeleccionBuses extends JPanel implements ActionListener {
         // this.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
         this.setBounds(0,0, 500,0);
 
-
-        asientos = new Asientos(buses);
 
         panel_superior = new JPanel();
         configurarPanel(1);
@@ -65,11 +67,14 @@ public class PanelSeleccionBuses extends JPanel implements ActionListener {
         panelesFactory = new PanelesFactory();
 
         paneles = new ArrayList<JPanel>();
-        paneles = panelesFactory.crearPaneles(buses, precio_ruta);
+        paneles = panelesFactory.crearPaneles(buses, precio_ruta, fecha_viaje);
 
         botones_buses = new ArrayList<JRadioButton>();
         buttonGroup = new ButtonGroup();
 
+        indices_botones = new int[6];
+
+        int i = 0;
         for(JPanel panel : paneles){
             JRadioButton seleccionar = new JRadioButton("Seleccionar Bus");
             seleccionar.addActionListener(this);
@@ -77,6 +82,8 @@ public class PanelSeleccionBuses extends JPanel implements ActionListener {
             seleccionar.setBounds(400, 50, 140,40);
             botones_buses.add(seleccionar);
             buttonGroup.add(seleccionar);
+            indices_botones[i] = i;
+            i++;
 
             panel.add(seleccionar);
             panel_opciones.add(panel);
@@ -87,19 +94,27 @@ public class PanelSeleccionBuses extends JPanel implements ActionListener {
         panel_opciones.add(boton_seleccionar);
         boton_seleccionar.setBounds(200,210,200,40);
         boton_seleccionar.addActionListener(this);
+
+
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == boton_seleccionar){
 
-        for(JRadioButton boton : botones_buses){
-            if (e.getSource() == boton){
-                asientos.mostrarAsientos();
-            }
+            Buses busSeleccionado = buses.get(seleccion);
+            String semen = busSeleccionado.getTipoBus();
+            System.out.println(semen);
+
+            asientos = new VentanaAsientos(busSeleccionado);
+            asientos.mostrarAsientos();
         }
 
-        if (e.getSource() == boton_seleccionar){
-            asientos.mostrarAsientos();
+        for(int i = 0;i< botones_buses.size();i++){
+            if(e.getSource() == botones_buses.get(i)){
+                seleccion = i;
+                System.out.println(seleccion);
+            }
         }
     }
 
@@ -138,14 +153,14 @@ public class PanelSeleccionBuses extends JPanel implements ActionListener {
     public void backgroundRuta(String ruta_final){
         if(ruta_final.equals("Angol - Chiguayante") || ruta_final.equals("Chiguayante - Angol")){
             try{
-                bg = ImageIO.read(new File("./src/main/java/Vistas/Imagenes/paisaje angol-chigua.png"));
+                bg = ImageIO.read(new File("./src/main/resources/Imagenes/paisaje angol-chigua.png"));
             } catch (IOException e){
                 System.out.println(e);
             }
         }
         if(ruta_final.equals("Angol - Concepcion") || ruta_final.equals("Concepcion - Angol")){
             try{
-                bg = ImageIO.read(new File("./src/main/java/Vistas/Imagenes/paisaje angol-conce.png"));
+                bg = ImageIO.read(new File("./src/main/resources/Imagenes/paisaje angol-conce.png"));
             } catch (IOException e){
                 System.out.println(e);
             }
@@ -153,7 +168,7 @@ public class PanelSeleccionBuses extends JPanel implements ActionListener {
         }
         if(ruta_final.equals("Angol - Nacimiento") || ruta_final.equals("Nacimiento - Angol")){
             try{
-                bg = ImageIO.read(new File("./src/main/java/Vistas/Imagenes/paisaje angol-nacimiento.png"));
+                bg = ImageIO.read(new File("./src/main/resources/Imagenes/paisaje angol-nacimiento.png"));
             } catch (IOException e){
                 System.out.println(e);
             }
@@ -161,7 +176,7 @@ public class PanelSeleccionBuses extends JPanel implements ActionListener {
         }
         if(ruta_final.equals("Angol - Santa Juana") || ruta_final.equals("Santa Juana - Angol")){
             try{
-                bg = ImageIO.read(new File("./src/main/java/Vistas/Imagenes/paisaje angol-santajuana.png"));
+                bg = ImageIO.read(new File("./src/main/resources/Imagenes/paisaje angol-santajuana.png"));
             } catch (IOException e){
                 System.out.println(e);
             }
@@ -169,7 +184,7 @@ public class PanelSeleccionBuses extends JPanel implements ActionListener {
         }
         if(ruta_final.equals("Chiguayante - Nacimiento") || ruta_final.equals("Nacimiento - Chiguayante")){
             try{
-                bg = ImageIO.read(new File("./src/main/java/Vistas/Imagenes/paisaje chigua-nacimiento.png"));
+                bg = ImageIO.read(new File("./src/main/resources/Imagenes/paisaje chigua-nacimiento.png"));
             } catch (IOException e){
                 System.out.println(e);
             }
@@ -177,7 +192,7 @@ public class PanelSeleccionBuses extends JPanel implements ActionListener {
         }
         if(ruta_final.equals("Chiguayante - Santa Juana") || ruta_final.equals("Santa Juana - Chiguayante")){
             try{
-                bg = ImageIO.read(new File("./src/main/java/Vistas/Imagenes/paisaje chigua-nacimiento.png"));
+                bg = ImageIO.read(new File("./src/main/resources/Imagenes/paisaje chigua-nacimiento.png"));
             } catch (IOException e){
                 System.out.println(e);
             }
@@ -185,21 +200,21 @@ public class PanelSeleccionBuses extends JPanel implements ActionListener {
         }
         if(ruta_final.equals("Concepcion - Chiguayante") || ruta_final.equals("Chiguayante - Concepcion") ){
             try{
-                bg = ImageIO.read(new File("./src/main/java/Vistas/Imagenes/paisaje conce-chigua.png"));
+                bg = ImageIO.read(new File("./src/main/resources/Imagenes/paisaje conce-chigua.png"));
             } catch (IOException e){
                 System.out.println(e);
             }
         }
         if(ruta_final.equals("Concepcion - Nacimiento") || ruta_final.equals("Nacimiento - Concepcion")){
             try{
-                bg = ImageIO.read(new File("./src/main/java/Vistas/Imagenes/paisaje conce-nacimiento.png"));
+                bg = ImageIO.read(new File("./src/main/resources/Imagenes/paisaje conce-nacimiento.png"));
             } catch (IOException e){
                 System.out.println(e);
             }
         }
         if(ruta_final.equals("Concepcion - Santa Juana") || ruta_final.equals("Santa Juana - Concepcion")){
             try{
-                bg = ImageIO.read(new File("./src/main/java/Vistas/Imagenes/paisaje conce-santajuana.png"));
+                bg = ImageIO.read(new File("./src/main/resources/Imagenes/paisaje conce-santajuana.png"));
             } catch (IOException e){
                 System.out.println(e);
             }
@@ -207,7 +222,7 @@ public class PanelSeleccionBuses extends JPanel implements ActionListener {
         }
         if(ruta_final.equals("Santa Juana - Nacimiento") || ruta_final.equals("Nacimiento - Santa Juana")){
             try{
-                bg = ImageIO.read(new File("./src/main/java/Vistas/Imagenes/paisaje santajuana-nacimiento.png"));
+                bg = ImageIO.read(new File("./src/main/resources/Imagenes/paisaje santajuana-nacimiento.png"));
             } catch (IOException e){
                 System.out.println(e);
             }

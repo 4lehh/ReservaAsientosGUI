@@ -8,6 +8,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -97,7 +99,18 @@ public class PanelDatos extends JPanel implements ActionListener {
             buses = m.getBuses();
             String ruta_final = m.getRuta();
 
+            LocalDate fecha_actualizada = fecha_completa.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate fecha_actual = LocalDate.now();
 
+            if(origen.equals(destino)){
+                JOptionPane.showMessageDialog(this, "Debe seleccionar una ruta válida", "Ruta inválida", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            if (fecha_actualizada.isBefore(fecha_actual)){
+                JOptionPane.showMessageDialog(this, "La fecha seleccionada es anterior a la fecha actual.", "Fecha inválida", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
             System.out.println(fecha_simple);
             this.remove(panel_inferior);
@@ -105,7 +118,7 @@ public class PanelDatos extends JPanel implements ActionListener {
 
             int precio_ruta = m.getPrecio_ruta();
 
-            this.add(new PanelSeleccionBuses(nombre, ruta_final, fecha_simple, panelPaisaje, buses, precio_ruta));
+            this.add(new PanelSeleccionBuses(nombre, ruta_final, fecha_simple, panelPaisaje, buses, precio_ruta, dateChooser.getDate()));
 
             repaint();
             revalidate();

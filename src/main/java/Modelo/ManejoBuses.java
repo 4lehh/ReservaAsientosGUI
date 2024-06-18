@@ -2,6 +2,7 @@ package Modelo;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class ManejoBuses {
     // ------------ Strings ---------------
@@ -27,15 +28,16 @@ public class ManejoBuses {
 
         // ---------------- Arreglar -----------------
 
+
         ArrayList<Buses> m = new ArrayList<Buses>();
-        int hora = 8;
-        for(int i = 0; i < 6; i++){
-            if(i == 4){
-                m.add(new Bus_2(LocalTime.of(8+i, 0)));
+        for(int i = 0; i < 6; i++) {
+            Random rand = new Random();
+            int random = rand.nextInt(2);
+            if(random%2 == 1){
+                m.add(new Bus_2(LocalTime.of(8+2*i, 0)));
             } else {
-                m.add(new Bus_1(LocalTime.of(8+i, 0)));
+                m.add(new Bus_1(LocalTime.of(8+2*i, 0)));
             }
-            hora += 2;
         }
         return m;
     }
