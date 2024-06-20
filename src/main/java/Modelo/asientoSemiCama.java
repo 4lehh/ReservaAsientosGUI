@@ -32,4 +32,9 @@ public class asientoSemiCama extends tipoAsiento{
     public boolean estadoAsiento() {
         return estado;
     }
+
+    @Override
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
 }

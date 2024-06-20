@@ -34,7 +34,12 @@ public class asientoNormal extends  tipoAsiento{
     }
 
     @Override
-    public boolean estadoAsiento() {
+    public  boolean estadoAsiento() {
         return estado;
+    }
+
+    @Override
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
 }

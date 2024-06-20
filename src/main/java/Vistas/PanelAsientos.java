@@ -30,13 +30,13 @@ public class PanelAsientos extends JPanel implements ActionListener {
 
     private Buses buses;
 
-    JButton boton_prueba;
+    JButton boton_comprar_asiento;
     Boolean estado = false;
 
     JLabel label_precio;
     JLabel label_estado;
 
-    String precio;
+    int precio;
     String texto_estado;
 
     ArrayList<tipoAsiento> asientos;
@@ -83,17 +83,18 @@ public class PanelAsientos extends JPanel implements ActionListener {
         panel_asiento_prueba.setBounds(10,80, 175,500);
         panel_info_asientos.add(panel_asiento_prueba);
 
-        boton_prueba = new JButton("asdasd");
-        boton_prueba.setFocusable(false);
-        boton_prueba.setBounds(20,200, 40,40);
-        boton_prueba.addActionListener(this);
-        panel_asiento_prueba.add(boton_prueba);
+
+        boton_comprar_asiento = new JButton("Comprar");
+        boton_comprar_asiento.setFocusable(false);
+        boton_comprar_asiento.setBounds(20,200, 120,40);
+        boton_comprar_asiento.addActionListener(this);
+        panel_asiento_prueba.add(boton_comprar_asiento);
 
 
         label_precio = new JLabel();
         label_precio.setFont(new Font("Arial", Font.PLAIN, 16));
         panel_asiento_prueba.add(label_precio);
-        label_precio.setBounds(20,5, 100, 40);
+        label_precio.setBounds(20,5, 150, 40);
 
         label_estado = new JLabel();
         panel_asiento_prueba.add(label_estado);
@@ -134,6 +135,13 @@ public class PanelAsientos extends JPanel implements ActionListener {
             label_estado.setForeground(Color.RED);
         }
 
+        label_precio.setText("" + precio);
+        if(precio == 0){
+            label_precio.setText("Solo precio ruta");
+        } else{
+            label_precio.setText("" + precio);
+        }
+
     }
 
     public void configurarPanel(int i){
@@ -164,16 +172,24 @@ public class PanelAsientos extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == boton_prueba) {
-            estado = !estado;
+        if (e.getSource() == boton_comprar_asiento) {
+            comprarAsiento();
             repaint();
         }
 
         for (int i = 0; i < buses.tipoAsientos().size(); i++) {
             if (e.getSource() == buses.tipoAsientos().get(i)) {
+                tipoAsiento asiento = asientos.get(i);
+
+
+
+
+
+                estado = asiento.estadoAsiento();
+                precio = asiento.precioAsiento();
+
                 System.out.println("sasdaasdasd");
-
-
+                repaint();
             }
         }
 
@@ -189,4 +205,8 @@ public class PanelAsientos extends JPanel implements ActionListener {
 //        }
 
     }
+    public void comprarAsiento(){
+
+    }
+
 }

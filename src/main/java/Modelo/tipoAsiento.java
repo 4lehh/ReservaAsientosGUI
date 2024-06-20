@@ -13,4 +13,6 @@ public abstract class tipoAsiento {
     public abstract int precioAsiento();
 
     public abstract boolean estadoAsiento();
+
+    public abstract void setEstado(boolean estado);
 }

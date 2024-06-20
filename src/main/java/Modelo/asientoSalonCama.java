@@ -25,11 +25,16 @@ public class asientoSalonCama extends tipoAsiento{
 
     @Override
     public int precioAsiento() {
-        return 1500;
+        return 3000;
     }
 
     @Override
     public boolean estadoAsiento() {
         return estado;
+    }
+
+    @Override
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
 }
