@@ -15,5 +15,7 @@ public abstract class Buses {
 
     public abstract String getTipoBus();
 
+    public abstract ArrayList<tipoAsiento> asientos();
+
 
 }

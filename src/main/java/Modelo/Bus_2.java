@@ -9,10 +9,12 @@ public class Bus_2 extends Buses {
     private LocalTime hora_partida;
     private ArrayList<JButton> asientos;
     int pos_y = 0;
+    ArrayList<tipoAsiento> asientos_del_bus;
 
     public Bus_2(LocalTime hora){
         hora_partida = hora;
         asientos = new ArrayList<JButton>();
+        asientos_del_bus = new ArrayList<tipoAsiento>();
 
         for(int i = 0; i < 36; i++){
             if(i < 8){
@@ -79,6 +81,10 @@ public class Bus_2 extends Buses {
 
     public ArrayList<JButton> tipoAsientos(){
         return asientos;
+    }
+
+    public ArrayList<tipoAsiento> asientos(){
+        return asientos_del_bus;
     }
 
 }

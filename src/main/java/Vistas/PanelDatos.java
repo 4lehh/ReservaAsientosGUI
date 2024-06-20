@@ -159,7 +159,6 @@ public class PanelDatos extends JPanel implements ActionListener {
             panel.setOpaque(false);
             panel.setLayout(null);
             panel_inferior.add(panel);
-            panel.setBorder(BorderFactory.createLineBorder(Color.CYAN, 3));
             panel.setBounds(50,30, 450,450);
         }
 
