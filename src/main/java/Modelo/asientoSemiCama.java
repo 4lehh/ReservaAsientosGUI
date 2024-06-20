@@ -4,8 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public class asientoSemiCama extends tipoAsiento{
-
     private JButton boton_asiento;
+    public boolean estado = true;
+
     public asientoSemiCama(int pos_x, int pos_y, int numero){
         boton_asiento = new JButton();
         boton_asiento.setFont(new Font("Arial", Font.PLAIN, 4));
@@ -18,12 +19,17 @@ public class asientoSemiCama extends tipoAsiento{
     }
 
     @Override
-    public JButton getAsiento() {
+    public JButton getBotonAsiento() {
         return boton_asiento;
     }
 
     @Override
     public int precioAsiento() {
         return 1500;
+    }
+
+    @Override
+    public boolean estadoAsiento() {
+        return estado;
     }
 }

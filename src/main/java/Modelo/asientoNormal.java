@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public class asientoNormal extends  tipoAsiento{
     private JButton boton_asiento;
+    public boolean estado = true;
 
 
     public asientoNormal(int pos_x, int pos_y, int numero){
@@ -22,7 +23,7 @@ public class asientoNormal extends  tipoAsiento{
     }
 
     @Override
-    public JButton getAsiento() {
+    public JButton getBotonAsiento() {
         return boton_asiento;
     }
 
@@ -30,5 +31,10 @@ public class asientoNormal extends  tipoAsiento{
     @Override
     public int precioAsiento() {
         return 0;
+    }
+
+    @Override
+    public boolean estadoAsiento() {
+        return estado;
     }
 }

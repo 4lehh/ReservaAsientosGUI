@@ -8,7 +8,9 @@ public abstract class tipoAsiento {
 
     }
 
-    public abstract JButton getAsiento();
+    public abstract JButton getBotonAsiento();
 
     public abstract int precioAsiento();
+
+    public abstract boolean estadoAsiento();
 }
