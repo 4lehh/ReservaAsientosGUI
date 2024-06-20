@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import Modelo.*;
 
+
 public class PanelAsientos extends JPanel implements ActionListener {
 
     // -------------- BG -----------------
@@ -34,12 +35,18 @@ public class PanelAsientos extends JPanel implements ActionListener {
 
     JLabel label_precio;
     JLabel label_estado;
+
+    String precio;
+    String texto_estado;
+
+    ArrayList<tipoAsiento> asientos;
     public PanelAsientos(Buses bus_disponibles) {
 
         // -------------- Configurar Panel ---------------------
         this.setLayout(new BorderLayout());
         this.setOpaque(false);
         this.buses = bus_disponibles;
+        this.asientos = buses.getAsientos();
 
         // --------- Panel Grilla ----------------
         panel_contenedor_grilla = new JPanel();
@@ -65,7 +72,6 @@ public class PanelAsientos extends JPanel implements ActionListener {
         for(JButton botones_buses : buses.tipoAsientos()){
             panel_grilla.add(botones_buses);
             botones_buses.addActionListener(this);
-
         }
 
         panel_info_asientos = new JPanel();
@@ -92,6 +98,22 @@ public class PanelAsientos extends JPanel implements ActionListener {
         label_estado = new JLabel();
         panel_asiento_prueba.add(label_estado);
         label_estado.setBounds(20, 50, 130, 40);
+
+
+
+
+
+
+
+
+
+        //                if(!estado){
+//                    estado = true;
+//                    label_precio.setText("kasdkasdkas");
+//                } else{
+//                    estado = false;
+//                    label_precio.setText("xxxx::C:C:C:C:C:");
+//                }
 
     }
 
@@ -142,34 +164,29 @@ public class PanelAsientos extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        boolean i = false;
-        if(e.getSource() == boton_prueba){
-            if(!estado){
-                estado = true;
-            } else{
-                estado = false;
-            }
+        if (e.getSource() == boton_prueba) {
+            estado = !estado;
             repaint();
         }
 
-        for(JButton botones_buses : buses.tipoAsientos()){
-            if(e.getSource() == botones_buses){
-                System.out.println("semen");
-                if(!estado){
-                    estado = true;
-                    label_precio.setText("kasdkasdkas");
-                } else{
-                    estado = false;
-                    label_precio.setText("xxxx::C:C:C:C:C:");
-                }
-                repaint();
-
-
+        for (int i = 0; i < buses.tipoAsientos().size(); i++) {
+            if (e.getSource() == buses.tipoAsientos().get(i)) {
+                System.out.println("sasdaasdasd");
 
 
             }
-
         }
+
+
+
+
+//        for(JButton botones_buses : buses.tipoAsientos()){
+//            if(e.getSource() == botones_buses){
+//                System.out.println("sdfsdfsdfsdf");
+//
+//                repaint();
+//            }
+//        }
 
     }
 }
