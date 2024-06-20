@@ -32,6 +32,7 @@ public class PanelAsientos extends JPanel implements ActionListener {
     JButton boton_prueba;
     Boolean estado = false;
 
+    JLabel label_precio;
     JLabel label_estado;
     public PanelAsientos(Buses bus_disponibles) {
 
@@ -83,7 +84,7 @@ public class PanelAsientos extends JPanel implements ActionListener {
         panel_asiento_prueba.add(boton_prueba);
 
 
-        JLabel label_precio = new JLabel("Precio: ");
+        label_precio = new JLabel();
         label_precio.setFont(new Font("Arial", Font.PLAIN, 16));
         panel_asiento_prueba.add(label_precio);
         label_precio.setBounds(20,5, 100, 40);
@@ -153,6 +154,18 @@ public class PanelAsientos extends JPanel implements ActionListener {
 
         for(JButton botones_buses : buses.tipoAsientos()){
             if(e.getSource() == botones_buses){
+                System.out.println("semen");
+                if(!estado){
+                    estado = true;
+                    label_precio.setText("kasdkasdkas");
+                } else{
+                    estado = false;
+                    label_precio.setText("xxxx::C:C:C:C:C:");
+                }
+                repaint();
+
+
+
 
             }
 
