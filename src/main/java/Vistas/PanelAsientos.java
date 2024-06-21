@@ -40,6 +40,9 @@ public class PanelAsientos extends JPanel implements ActionListener {
     String texto_estado;
 
     ArrayList<tipoAsiento> asientos;
+    int indice_asiento_seleccionado;
+
+    JButton mostrar_info_asiento;
     public PanelAsientos(Buses bus_disponibles) {
 
         // -------------- Configurar Panel ---------------------
@@ -78,10 +81,8 @@ public class PanelAsientos extends JPanel implements ActionListener {
         configurarPanel(3);
 
         panel_asiento_prueba = new JPanel();
-        panel_asiento_prueba.setLayout(null);
-        panel_asiento_prueba.setBorder(BorderFactory.createLineBorder(Color.MAGENTA, 3));
-        panel_asiento_prueba.setBounds(10,80, 175,500);
-        panel_info_asientos.add(panel_asiento_prueba);
+        configurarPanel(4);
+
 
 
         boton_comprar_asiento = new JButton("Comprar");
@@ -89,7 +90,6 @@ public class PanelAsientos extends JPanel implements ActionListener {
         boton_comprar_asiento.setBounds(20,200, 120,40);
         boton_comprar_asiento.addActionListener(this);
         panel_asiento_prueba.add(boton_comprar_asiento);
-
 
         label_precio = new JLabel();
         label_precio.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -100,21 +100,12 @@ public class PanelAsientos extends JPanel implements ActionListener {
         panel_asiento_prueba.add(label_estado);
         label_estado.setBounds(20, 50, 130, 40);
 
+        mostrar_info_asiento = new JButton("Imprimir info");
+        panel_asiento_prueba.add(mostrar_info_asiento);
+        mostrar_info_asiento.setBounds(20,400,130,40);
+        mostrar_info_asiento.setFocusable(false);
+        mostrar_info_asiento.addActionListener(this);
 
-
-
-
-
-
-
-
-        //                if(!estado){
-//                    estado = true;
-//                    label_precio.setText("kasdkasdkas");
-//                } else{
-//                    estado = false;
-//                    label_precio.setText("xxxx::C:C:C:C:C:");
-//                }
 
     }
 
@@ -167,31 +158,46 @@ public class PanelAsientos extends JPanel implements ActionListener {
             panel_info_asientos.setLayout(null);
             this.add(panel_info_asientos, BorderLayout.CENTER);
         }
+
+        if(i == 4){
+            panel_asiento_prueba.setLayout(null);
+            panel_asiento_prueba.setBorder(BorderFactory.createLineBorder(Color.MAGENTA, 3));
+            panel_asiento_prueba.setBounds(10,80, 175,500);
+        }
     }
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == boton_comprar_asiento) {
-            comprarAsiento();
+            tipoAsiento asiento = asientos.get(indice_asiento_seleccionado);
+            estado = false;
+            asiento.setEstado(false);
+
             repaint();
         }
 
+
+
         for (int i = 0; i < buses.tipoAsientos().size(); i++) {
             if (e.getSource() == buses.tipoAsientos().get(i)) {
+                panel_info_asientos.add(panel_asiento_prueba);
                 tipoAsiento asiento = asientos.get(i);
-
-
-
-
+                indice_asiento_seleccionado = i;
 
                 estado = asiento.estadoAsiento();
                 precio = asiento.precioAsiento();
 
-                System.out.println("sasdaasdasd");
                 repaint();
             }
         }
+
+        if(e.getSource() == mostrar_info_asiento){
+            tipoAsiento asiento = asientos.get(indice_asiento_seleccionado);
+            System.out.println("Precio: " + asiento.precioAsiento());
+            System.out.println("Estado: " + asiento.estadoAsiento());
+        }
+
 
 
 
