@@ -35,6 +35,7 @@ public class PanelAsientos extends JPanel implements ActionListener {
 
     JLabel label_precio;
     JLabel label_estado;
+    JLabel label_nombre;
 
     int precio;
     String texto_estado;
@@ -91,14 +92,23 @@ public class PanelAsientos extends JPanel implements ActionListener {
         boton_comprar_asiento.addActionListener(this);
         panel_asiento_prueba.add(boton_comprar_asiento);
 
+        label_nombre = new JLabel();
+        label_nombre.setFont(new Font("Arial", Font.PLAIN, 16));
+        panel_asiento_prueba.add(label_nombre);
+        label_nombre.setBounds(20,5, 150,40);
+
         label_precio = new JLabel();
         label_precio.setFont(new Font("Arial", Font.PLAIN, 16));
         panel_asiento_prueba.add(label_precio);
-        label_precio.setBounds(20,5, 150, 40);
+        label_precio.setBounds(20,50, 150, 40);
 
         label_estado = new JLabel();
+        label_estado.setFont(new Font("Arial", Font.PLAIN, 16));
         panel_asiento_prueba.add(label_estado);
-        label_estado.setBounds(20, 50, 130, 40);
+        label_estado.setBounds(20, 95, 130, 40);
+
+
+
 
         mostrar_info_asiento = new JButton("Imprimir info");
         panel_asiento_prueba.add(mostrar_info_asiento);
@@ -117,6 +127,15 @@ public class PanelAsientos extends JPanel implements ActionListener {
             g2d.drawImage(escalada, 0,0,this);
         }
 
+        if(indice_asiento_seleccionado+1 != 0){
+            for (int i = 0; i < buses.tipoAsientos().size(); i++) {
+                if(i == indice_asiento_seleccionado){
+                    tipoAsiento asiento = asientos.get(i);
+                    label_nombre.setText("Asiento: " + asiento.getID());
+                }
+            }
+        }
+
         // ESTADO DEL ASIENTO
         if(estado){
             label_estado.setText("DISPONIBLE");
@@ -126,11 +145,10 @@ public class PanelAsientos extends JPanel implements ActionListener {
             label_estado.setForeground(Color.RED);
         }
 
-        label_precio.setText("" + precio);
         if(precio == 0){
             label_precio.setText("Solo precio ruta");
         } else{
-            label_precio.setText("" + precio);
+            label_precio.setText("Precio: " + precio);
         }
 
     }
@@ -162,7 +180,7 @@ public class PanelAsientos extends JPanel implements ActionListener {
         if(i == 4){
             panel_asiento_prueba.setLayout(null);
             panel_asiento_prueba.setBorder(BorderFactory.createLineBorder(Color.MAGENTA, 3));
-            panel_asiento_prueba.setBounds(10,80, 175,500);
+            panel_asiento_prueba.setBounds(10,80, 260,500);
         }
     }
 
