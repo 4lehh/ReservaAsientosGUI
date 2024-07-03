@@ -9,9 +9,10 @@ import java.util.ArrayList;
 public class asientoNormal extends  tipoAsiento{
     private JButton boton_asiento;
     public boolean estado = true;
+    String ID;
 
-
-    public asientoNormal(int pos_x, int pos_y, int numero){
+    public asientoNormal(int pos_x, int pos_y, int numero, String Id){
+        this.ID = Id;
         boton_asiento = new JButton();
         boton_asiento.setFont(new Font("Arial", Font.PLAIN, 4));
         boton_asiento.setFocusable(false);
@@ -41,5 +42,10 @@ public class asientoNormal extends  tipoAsiento{
     @Override
     public void setEstado(boolean estado) {
         this.estado = estado;
+    }
+
+    @Override
+    public String getID() {
+        return ID;
     }
 }

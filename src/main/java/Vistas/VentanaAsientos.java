@@ -8,9 +8,9 @@ import java.awt.*;
 public class VentanaAsientos extends JFrame {
     private PanelAsientos panel_asientos;
 
-    public VentanaAsientos(Buses bus_disponible){
+    public VentanaAsientos(Buses bus_disponible, int seleccion){
         this.setLayout(null);
-        panel_asientos = new PanelAsientos(bus_disponible);
+        panel_asientos = new PanelAsientos(bus_disponible, seleccion);
         panel_asientos.setBounds(0,0,500,750);
         this.add(panel_asientos);
 

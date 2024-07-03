@@ -2,7 +2,9 @@ package Modelo;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
+import java.io.*;
 
 public class ManejoBuses {
     // ------------ Strings ---------------
@@ -22,6 +24,7 @@ public class ManejoBuses {
             System.out.println("Error, " + e);
         }
         System.out.println("Nombre: " + nombre + ". Ruta: " + nombreDestino + ". Precio: " + precio);
+
     }
 
     public ArrayList<Buses> getBuses(){

@@ -7,9 +7,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 import Modelo.*;
 
 
@@ -43,8 +45,12 @@ public class PanelAsientos extends JPanel implements ActionListener {
     int indice_asiento_seleccionado;
 
     JButton mostrar_info_asiento;
-    public PanelAsientos(Buses bus_disponibles) {
 
+    int seleccion;
+    int numero_asiento_comprar = 0;
+    public PanelAsientos(Buses bus_disponibles, int seleccion) {
+
+        this.seleccion = seleccion;
         // -------------- Configurar Panel ---------------------
         this.setLayout(new BorderLayout());
         this.setOpaque(false);
@@ -170,14 +176,50 @@ public class PanelAsientos extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == boton_comprar_asiento) {
+            System.out.println(numero_asiento_comprar);
             tipoAsiento asiento = asientos.get(indice_asiento_seleccionado);
+            if (numero_asiento_comprar != 0){
+                try {
+                    // Importamos el archivo
+                    File archivo = new File("./src/main/java/Modelo/datos.txt");
+
+                    // Leer el archivo y almacenar las líneas en una lista
+                    BufferedReader leer = new BufferedReader(new FileReader(archivo));
+                    List<String> lineas = new ArrayList<>();
+                    String linea;
+
+                    while ((linea = leer.readLine()) != null) {
+                        lineas.add(linea);
+                    }
+                    leer.close();
+
+                    // Modificar la línea específica (convertir número de línea a índice basado en 0)
+                    int indice = numero_asiento_comprar - 1;
+
+                    if(lineas.get(indice).equals("0")){
+                        lineas.set(indice, "1");
+                    } else{
+                        System.out.println("No es posible la compra");
+                    }
+
+
+                    // Escribir las líneas modificadas de vuelta al archivo
+                    BufferedWriter escribir = new BufferedWriter(new FileWriter(archivo));
+                    for (String l : lineas) {
+                        escribir.write(l);
+                        escribir.newLine();
+                    }
+                    escribir.close();
+
+                } catch (IOException i) {
+                    i.printStackTrace(System.out);
+                }
+            }
             estado = false;
             asiento.setEstado(false);
-
             repaint();
+
         }
-
-
 
         for (int i = 0; i < buses.tipoAsientos().size(); i++) {
             if (e.getSource() == buses.tipoAsientos().get(i)) {
@@ -185,10 +227,41 @@ public class PanelAsientos extends JPanel implements ActionListener {
                 tipoAsiento asiento = asientos.get(i);
                 indice_asiento_seleccionado = i;
 
+                String id_asiento = asiento.getID();
+                String numeros = id_asiento.replaceAll("[^0-9]", "");
+                numero_asiento_comprar = Integer.parseInt(numeros) + (36 * seleccion);
+
+                try {
+                    // Importamos el archivo
+                    File archivo = new File("./src/main/java/Modelo/datos.txt");
+
+                    // Leer el archivo y almacenar las líneas en una lista
+                    BufferedReader leer = new BufferedReader(new FileReader(archivo));
+                    List<String> lineas = new ArrayList<>();
+                    String linea;
+
+                    while ((linea = leer.readLine()) != null) {
+                        lineas.add(linea);
+                    }
+                    leer.close();
+
+                    if(lineas.get(numero_asiento_comprar - 1).equals("1")){
+                        tipoAsiento asient = asientos.get(indice_asiento_seleccionado);
+                        asient.setEstado(false);
+                        estado = asient.estadoAsiento();
+                    }
+
+
+                } catch (IOException p) {
+                    p.printStackTrace(System.out);
+                }
+
                 estado = asiento.estadoAsiento();
-                precio = asiento.precioAsiento();
 
                 repaint();
+
+
+                System.out.println("Bus: " + seleccion + ", Asiento: " + numero_asiento_comprar);
             }
         }
 
