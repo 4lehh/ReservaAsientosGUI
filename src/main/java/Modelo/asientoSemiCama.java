@@ -45,4 +45,9 @@ public class asientoSemiCama extends tipoAsiento{
     public String getID() {
         return id;
     }
+
+    @Override
+    public String getTipoAsiento() {
+        return "Asiento Semi-Cama";
+    }
 }

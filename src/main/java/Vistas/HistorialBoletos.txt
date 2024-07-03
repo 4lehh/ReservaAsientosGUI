@@ -1,0 +1,441 @@
+
+
+------------------------------------
+Nombre: Oliver
+Asiento: B12, Asiento Semi-Cama
+Fecha de viaje: 04-07-2024
+Precio pagado: $8500
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: Oliver
+Asiento: C24, Asiento Normal
+Fecha de viaje: 04-07-2024
+Precio pagado: $7000
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: Oliver
+Asiento: B14, Asiento Semi-Cama
+Fecha de viaje: 04-07-2024
+Precio pagado: $8500
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: Chavalin
+Asiento: B15, Asiento Semi-Cama
+Fecha de viaje: 04-07-2024
+Precio pagado: $7000
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: Chavalin
+Asiento: C35, Asiento Normal
+Fecha de viaje: 04-07-2024
+Precio pagado: $5500
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: asdasd
+Asiento: B12, Asiento Semi-Cama
+Fecha de viaje: 12-07-2024
+Precio pagado: $7000
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: asdasd
+Asiento: B12, Asiento Semi-Cama
+Fecha de viaje: 12-07-2024
+Precio pagado: $8500
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: asdasd
+Asiento: B12, Asiento Semi-Cama
+Fecha de viaje: 12-07-2024
+Precio pagado: $5500
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: HOlaaaa
+Asiento: B20, Asiento Semi-Cama
+Fecha de viaje: 05-07-2024
+Precio pagado: $7000
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: HOlaaaa
+Asiento: B20, Asiento Semi-Cama
+Fecha de viaje: 05-07-2024
+Precio pagado: $8500
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: Oliver ele ele
+Asiento: B16, Asiento Semi-Cama
+Fecha de viaje: 04-07-2024
+Precio pagado: $8500
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: Oliver ele ele
+Asiento: B12, Asiento Semi-Cama
+Fecha de viaje: 04-07-2024
+Precio pagado: $8500
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: Oliver ele ele
+Asiento: B12, Asiento Semi-Cama
+Fecha de viaje: 04-07-2024
+Precio pagado: $8500
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: Oliver ele ele
+Asiento: C27, Asiento Normal
+Fecha de viaje: 04-07-2024
+Precio pagado: $7000
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: Oliver ele ele
+Asiento: C27, Asiento Normal
+Fecha de viaje: 04-07-2024
+Precio pagado: $7000
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: Oliver ele ele
+Asiento: B10, Asiento Semi-Cama
+Fecha de viaje: 04-07-2024
+Precio pagado: $8500
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: Oliver ele ele
+Asiento: C28, Asiento Normal
+Fecha de viaje: 04-07-2024
+Precio pagado: $7000
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: Oliver ele ele
+Asiento: C28, Asiento Normal
+Fecha de viaje: 04-07-2024
+Precio pagado: $7000
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: Oliver ele ele
+Asiento: C26, Asiento Normal
+Fecha de viaje: 04-07-2024
+Precio pagado: $7000
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: Oliver ele ele
+Asiento: C26, Asiento Normal
+Fecha de viaje: 04-07-2024
+Precio pagado: $7000
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: sddf
+Asiento: B12, Asiento Semi-Cama
+Fecha de viaje: 04-07-2024
+Precio pagado: $8500
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: sdddddd
+Asiento: B16, Asiento Semi-Cama
+Fecha de viaje: 04-07-2024
+Precio pagado: $8500
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: xxxcxcx
+Asiento: C24, Asiento Normal
+Fecha de viaje: 04-07-2024
+Precio pagado: $7000
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: dfff
+Asiento: A8, Asiento Salon-Cama
+Fecha de viaje: 04-07-2024
+Precio pagado: $10000
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: fdfdsfs
+Asiento: B12, Asiento Semi-Cama
+Fecha de viaje: 05-07-2024
+Precio pagado: $8500
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: dasfdas
+Asiento: A8, Asiento Salon-Cama
+Fecha de viaje: 05-07-2024
+Precio pagado: $10000
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: ccc
+Asiento: B15, Asiento Semi-Cama
+Fecha de viaje: 12-07-2024
+Precio pagado: $7000
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: dasdasdas
+Asiento: B12, Asiento Semi-Cama
+Fecha de viaje: 11-07-2024
+Precio pagado: $4500
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: dasdas
+Asiento: B12, Asiento Semi-Cama
+Fecha de viaje: 05-07-2024
+Precio pagado: $8500
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: dasdasda
+Asiento: A8, Asiento Salon-Cama
+Fecha de viaje: 05-07-2024
+Precio pagado: $6000
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: dasdasda
+Asiento: C24, Asiento Normal
+Fecha de viaje: 05-07-2024
+Precio pagado: $3000
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: dfsdfsdfsd
+Asiento: B11, Asiento Semi-Cama
+Fecha de viaje: 04-07-2024
+Precio pagado: $4500
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: asdaddas
+Asiento: B16, Asiento Semi-Cama
+Fecha de viaje: 13-07-2024
+Precio pagado: $4500
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: asdaddas
+Asiento: B16, Asiento Semi-Cama
+Fecha de viaje: 13-07-2024
+Precio pagado: $4500
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: dsfsdfds
+Asiento: C24, Asiento Normal
+Fecha de viaje: 12-07-2024
+Precio pagado: $3000
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: sdfsdf
+Asiento: B19, Asiento Semi-Cama
+Fecha de viaje: 11-07-2024
+Precio pagado: $4500
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: sdfsdf
+Asiento: B16, Asiento Semi-Cama
+Fecha de viaje: 11-07-2024
+Precio pagado: $4500
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: sdfsdf
+Asiento: B16, Asiento Semi-Cama
+Fecha de viaje: 11-07-2024
+Precio pagado: $4500
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: sdfsdf
+Asiento: C22, Asiento Normal
+Fecha de viaje: 11-07-2024
+Precio pagado: $3000
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: sadfdfdsfs
+Asiento: C23, Asiento Normal
+Fecha de viaje: 12-07-2024
+Precio pagado: $3000
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: sadfdfdsfs
+Asiento: C21, Asiento Normal
+Fecha de viaje: 12-07-2024
+Precio pagado: $3000
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: dsfsdfdsf
+Asiento: B20, Asiento Semi-Cama
+Fecha de viaje: 11-07-2024
+Precio pagado: $4500
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: dsfsdfdsf
+Asiento: B12, Asiento Semi-Cama
+Fecha de viaje: 11-07-2024
+Precio pagado: $4500
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: dsfsdf
+Asiento: B15, Asiento Semi-Cama
+Fecha de viaje: 06-07-2024
+Precio pagado: $4500
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: dsfsdf
+Asiento: A2, Asiento Salon-Cama
+Fecha de viaje: 06-07-2024
+Precio pagado: $6000
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: sfsdfsdf
+Asiento: B15, Asiento Semi-Cama
+Fecha de viaje: 07-07-2024
+Precio pagado: $4500
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: asdasda
+Asiento: B12, Asiento Semi-Cama
+Fecha de viaje: 20-07-2024
+Precio pagado: $8500
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: asdasda
+Asiento: B12, Asiento Semi-Cama
+Fecha de viaje: 20-07-2024
+Precio pagado: $8500
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: asdasda
+Asiento: B12, Asiento Semi-Cama
+Fecha de viaje: 04-07-2024
+Precio pagado: $4500
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: asdasdasdas
+Asiento: B12, Asiento Semi-Cama
+Fecha de viaje: 11-07-2024
+Precio pagado: $4500
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: asdasdasdas
+Asiento: B12, Asiento Semi-Cama
+Fecha de viaje: 11-07-2024
+Precio pagado: $4500
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: adasd
+Asiento: A8, Asiento Salon-Cama
+Fecha de viaje: 13-07-2024
+Precio pagado: $8500
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: adasd
+Asiento: B20, Asiento Semi-Cama
+Fecha de viaje: 13-07-2024
+Precio pagado: $7000
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: ffdfdd
+Asiento: C23, Asiento Normal
+Fecha de viaje: 13-07-2024
+Precio pagado: $2000
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: ffdfdd
+Asiento: A7, Asiento Salon-Cama
+Fecha de viaje: 13-07-2024
+Precio pagado: $5000
+¡Buen viaje!
+------------------------------------

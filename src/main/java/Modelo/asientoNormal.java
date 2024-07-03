@@ -49,4 +49,9 @@ public class asientoNormal extends  tipoAsiento{
     public String getID() {
         return id;
     }
+
+    @Override
+    public String getTipoAsiento() {
+        return "Asiento Normal";
+    }
 }

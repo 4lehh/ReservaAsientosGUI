@@ -106,7 +106,7 @@ public class PanelSeleccionBuses extends JPanel implements ActionListener {
             String semen = busSeleccionado.getTipoBus();
             System.out.println(semen);
 
-            asientos = new VentanaAsientos(busSeleccionado);
+            asientos = new VentanaAsientos(busSeleccionado, nombre, fecha, ruta_final, precio_ruta);
             asientos.mostrarAsientos();
         }
 
