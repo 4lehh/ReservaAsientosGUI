@@ -17,75 +17,74 @@ public class Bus_1 extends Buses {
         tipoAsiento a;
 
         for(int i = 0; i < 36; i++){
-
             if(i < 8){
-                int num_asiento = i +1;
+                int num_asiento = i+1;
                 switch(i % 4){
                     case 0:
-                        a = new asientoSalonCama(20,20+pos_y, i+1, "a" + num_asiento);
+                        a = new asientoSalonCama(20,20+pos_y, i+1, "A" + num_asiento);
                         asientos_del_bus.add(a);
                         asientos.add(a.getBotonAsiento());
                         break;
                     case 1:
-                        a = new asientoSalonCama(60,20+pos_y, i+1, "a" + num_asiento);
+                        a = new asientoSalonCama(60,20+pos_y, i+1, "A" + num_asiento);
                         asientos_del_bus.add(a);
                         asientos.add(a.getBotonAsiento());
                         break;
                     case 2:
-                        a = new asientoSalonCama(145, 20+pos_y, i+1, "a" + num_asiento);
+                        a = new asientoSalonCama(145, 20+pos_y, i+1, "A" + num_asiento);
                         asientos_del_bus.add(a);
                         asientos.add(a.getBotonAsiento());
                         break;
                     case 3:
-                        a = new asientoSalonCama(185, 20+pos_y, i+1, "a" + num_asiento);
+                        a = new asientoSalonCama(185, 20+pos_y, i+1, "A" + num_asiento);
                         asientos_del_bus.add(a);
                         asientos.add(a.getBotonAsiento());
                         break;
                 }
             } else if(i < 20){
-                int num_asiento = i +1;
+                int num_asiento = i+1;
                 switch(i % 4){
                     case 0:
-                        a = new asientoSemiCama(20,20+pos_y, i+1, "b" + num_asiento);
+                        a = new asientoSemiCama(20,20+pos_y, i+1, "B" + num_asiento);
                         asientos_del_bus.add(a);
                         asientos.add(a.getBotonAsiento());
                         break;
                     case 1:
-                        a = new asientoSemiCama(60,20+pos_y, i+1, "b" + num_asiento);
+                        a = new asientoSemiCama(60,20+pos_y, i+1, "B" + num_asiento);
                         asientos_del_bus.add(a);
                         asientos.add(a.getBotonAsiento());
                         break;
                     case 2:
-                        a = new asientoSemiCama(145,20+pos_y, i+1, "b" + num_asiento);
+                        a = new asientoSemiCama(145,20+pos_y, i+1, "B" + num_asiento);
                         asientos_del_bus.add(a);
                         asientos.add(a.getBotonAsiento());
                         break;
                     case 3:
-                        a = new asientoSemiCama(185,20+pos_y, i+1, "b" + num_asiento);
+                        a = new asientoSemiCama(185,20+pos_y, i+1, "B" + num_asiento);
                         asientos_del_bus.add(a);
                         asientos.add(a.getBotonAsiento());
                         break;
                 }
             } else {
-                int num_asiento = i + 1;
+                int num_asiento = i+1;
                 switch(i % 4){
                     case 0:
-                        a = new asientoNormal(20,20+pos_y, i+1, "c" + num_asiento);
+                        a = new asientoNormal(20,20+pos_y, i+1, "C" + num_asiento);
                         asientos_del_bus.add(a);
                         asientos.add(a.getBotonAsiento());
                         break;
                     case 1:
-                        a = new asientoNormal(60,20+pos_y, i+1, "c" + num_asiento);
+                        a = new asientoNormal(60,20+pos_y, i+1, "C" + num_asiento);
                         asientos_del_bus.add(a);
                         asientos.add(a.getBotonAsiento());
                         break;
                     case 2:
-                        a = new asientoNormal(145,20+pos_y, i+1, "c" + num_asiento);
+                        a = new asientoNormal(145,20+pos_y, i+1, "C" + num_asiento);
                         asientos_del_bus.add(a);
                         asientos.add(a.getBotonAsiento());
                         break;
                     case 3:
-                        a = new asientoNormal(185,20+pos_y, i+1, "c" + num_asiento);
+                        a = new asientoNormal(185,20+pos_y, i+1, "C" + num_asiento);
                         asientos_del_bus.add(a);
                         asientos.add(a.getBotonAsiento());
                         break;

@@ -9,10 +9,9 @@ import java.util.ArrayList;
 public class asientoNormal extends  tipoAsiento{
     private JButton boton_asiento;
     public boolean estado = true;
-    String ID;
+    private String id;
 
-    public asientoNormal(int pos_x, int pos_y, int numero, String Id){
-        this.ID = Id;
+    public asientoNormal(int pos_x, int pos_y, int numero, String id){
         boton_asiento = new JButton();
         boton_asiento.setFont(new Font("Arial", Font.PLAIN, 4));
         boton_asiento.setFocusable(false);
@@ -21,6 +20,8 @@ public class asientoNormal extends  tipoAsiento{
         boton_asiento.setBounds(pos_x, 20 + pos_y, 35, 35);
         boton_asiento.setToolTipText("" + numero);
         boton_asiento.setText("");
+
+        this.id = id;
     }
 
     @Override
@@ -46,6 +47,11 @@ public class asientoNormal extends  tipoAsiento{
 
     @Override
     public String getID() {
-        return ID;
+        return id;
+    }
+
+    @Override
+    public String getTipoAsiento() {
+        return "Asiento Normal";
     }
 }

@@ -17,4 +17,6 @@ public abstract class tipoAsiento {
     public abstract void setEstado(boolean estado);
 
     public abstract String getID();
+
+    public abstract String getTipoAsiento();
 }
