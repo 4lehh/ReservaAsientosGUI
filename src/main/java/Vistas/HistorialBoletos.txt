@@ -1,0 +1,48 @@
+
+------------------------------------
+Nombre: uwu
+Asiento: A1, Asiento Salon-Cama
+Fecha de viaje: 06-07-2024
+Precio pagado: $4000
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: asdasdas
+Asiento: A2, Asiento Salon-Cama
+Fecha de viaje: 06-07-2024
+Precio pagado: $2000
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: asdasdas
+Asiento: B11, Asiento Semi-Cama
+Fecha de viaje: 06-07-2024
+Precio pagado: $2000
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: null
+Asiento: A3, Asiento Salon-Cama
+Fecha de viaje: null
+Precio pagado: $3000
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: null
+Asiento: A4, Asiento Salon-Cama
+Fecha de viaje: null
+Precio pagado: $3000
+¡Buen viaje!
+------------------------------------
+
+------------------------------------
+Nombre: jejejej
+Asiento: A7, Asiento Salon-Cama
+Fecha de viaje: 12-07-2024
+Precio pagado: $10000
+¡Buen viaje!
+------------------------------------

@@ -7,10 +7,15 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.*;
-import java.util.ArrayList;
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.FileWriter;
 import java.util.List;
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.io.*;
+
 
 import Modelo.*;
 
@@ -26,6 +31,8 @@ public class PanelAsientos extends JPanel implements ActionListener {
     private JPanel panel_grilla;
     private JPanel panel_info_asientos;
     private JPanel panel_asiento_prueba;
+    private PanelBoleto panel_boleto;
+
 
     // ------------- Enteros -------------
     private int salto_y = 0;
@@ -37,18 +44,32 @@ public class PanelAsientos extends JPanel implements ActionListener {
 
     JLabel label_precio;
     JLabel label_estado;
-
+    JLabel label_nombre_asiento;
+    JLabel label_tipo_asiento;
     int precio;
     String texto_estado;
 
     ArrayList<tipoAsiento> asientos;
     int indice_asiento_seleccionado;
+    tipoAsiento asiento_comprado;
+    JButton boton_guardar_boleto;
+    JButton boton_ver_boleto;
+
+    Timer checkear_botones;
 
     JButton mostrar_info_asiento;
+    String nombre;
+    String fecha;
+    String ruta_final;
+    int precio_ruta;
 
     int seleccion;
     int numero_asiento_comprar = 0;
-    public PanelAsientos(Buses bus_disponibles, int seleccion) {
+    public PanelAsientos(Buses bus_disponibles, String nombre, String fecha, String ruta_final, int precio_ruta, int seleccion) {
+        this.nombre = nombre;
+        this.fecha = fecha;
+        this.ruta_final = ruta_final;
+        this.precio_ruta = precio_ruta;
 
         this.seleccion = seleccion;
         // -------------- Configurar Panel ---------------------
@@ -97,22 +118,42 @@ public class PanelAsientos extends JPanel implements ActionListener {
         boton_comprar_asiento.addActionListener(this);
         panel_asiento_prueba.add(boton_comprar_asiento);
 
+        label_nombre_asiento = new JLabel();
+        label_nombre_asiento.setFont(new Font("Arial", Font.PLAIN, 16));
+        panel_asiento_prueba.add(label_nombre_asiento);
+        label_nombre_asiento.setBounds(20,5, 150,40);
+
+        label_tipo_asiento = new JLabel();
+        label_tipo_asiento.setFont(new Font("Arial", Font.PLAIN, 16));
+        panel_asiento_prueba.add(label_tipo_asiento);
+        label_tipo_asiento.setBounds(20, 50, 200, 40);
+
         label_precio = new JLabel();
         label_precio.setFont(new Font("Arial", Font.PLAIN, 16));
         panel_asiento_prueba.add(label_precio);
-        label_precio.setBounds(20,5, 150, 40);
+        label_precio.setBounds(20,95, 200, 40);
 
         label_estado = new JLabel();
+        label_estado.setFont(new Font("Arial", Font.PLAIN, 16));
         panel_asiento_prueba.add(label_estado);
-        label_estado.setBounds(20, 50, 130, 40);
+        label_estado.setBounds(20, 140, 130, 40);
 
-        mostrar_info_asiento = new JButton("Imprimir info");
-        panel_asiento_prueba.add(mostrar_info_asiento);
-        mostrar_info_asiento.setBounds(20,400,130,40);
-        mostrar_info_asiento.setFocusable(false);
-        mostrar_info_asiento.addActionListener(this);
+        boton_guardar_boleto = new JButton("Guardar boleto");
+        boton_guardar_boleto.setEnabled(false);
+        panel_asiento_prueba.add(boton_guardar_boleto);
+        boton_guardar_boleto.setFocusable(false);
+        boton_guardar_boleto.setBounds(20,250,160,40);
+        boton_guardar_boleto.addActionListener(this);
 
+        boton_ver_boleto = new JButton("Ver boleto");
+        panel_asiento_prueba.add(boton_ver_boleto);
+        boton_ver_boleto.setEnabled(false);
+        boton_ver_boleto.setFocusable(false);
+        boton_ver_boleto.setBounds(20,295, 160,40);
+        boton_ver_boleto.addActionListener(this);
 
+        checkear_botones = new Timer(100, this);
+        checkear_botones.start();
     }
 
     public void paintComponent(Graphics g){
@@ -121,6 +162,16 @@ public class PanelAsientos extends JPanel implements ActionListener {
         if(bg_piso1 != null){
             Image escalada = bg_piso1.getScaledInstance(320, 720, Image.SCALE_SMOOTH);
             g2d.drawImage(escalada, 0,0,this);
+        }
+
+        if(indice_asiento_seleccionado+1 != 0){
+            for (int i = 0; i < buses.tipoAsientos().size(); i++) {
+                if(i == indice_asiento_seleccionado){
+                    tipoAsiento asiento = asientos.get(i);
+                    label_nombre_asiento.setText("Asiento: " + asiento.getID());
+                    label_tipo_asiento.setText(asiento.getTipoAsiento());
+                }
+            }
         }
 
         // ESTADO DEL ASIENTO
@@ -134,9 +185,9 @@ public class PanelAsientos extends JPanel implements ActionListener {
 
         label_precio.setText("" + precio);
         if(precio == 0){
-            label_precio.setText("Solo precio ruta");
+            label_precio.setText("Precio: Solo precio ruta");
         } else{
-            label_precio.setText("" + precio);
+            label_precio.setText("Precio: " + precio);
         }
 
     }
@@ -167,8 +218,7 @@ public class PanelAsientos extends JPanel implements ActionListener {
 
         if(i == 4){
             panel_asiento_prueba.setLayout(null);
-            panel_asiento_prueba.setBorder(BorderFactory.createLineBorder(Color.MAGENTA, 3));
-            panel_asiento_prueba.setBounds(10,80, 175,500);
+            panel_asiento_prueba.setBounds(10,80, 260,500);
         }
     }
 
@@ -176,8 +226,7 @@ public class PanelAsientos extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == boton_comprar_asiento) {
-            System.out.println(numero_asiento_comprar);
-            tipoAsiento asiento = asientos.get(indice_asiento_seleccionado);
+            asiento_comprado = asientos.get(indice_asiento_seleccionado);
             if (numero_asiento_comprar != 0){
                 try {
                     // Importamos el archivo
@@ -216,10 +265,12 @@ public class PanelAsientos extends JPanel implements ActionListener {
                 }
             }
             estado = false;
-            asiento.setEstado(false);
-            repaint();
+            asiento_comprado.setEstado(false);
 
+            repaint();
         }
+
+
 
         for (int i = 0; i < buses.tipoAsientos().size(); i++) {
             if (e.getSource() == buses.tipoAsientos().get(i)) {
@@ -257,35 +308,74 @@ public class PanelAsientos extends JPanel implements ActionListener {
                 }
 
                 estado = asiento.estadoAsiento();
+                precio = asiento.precioAsiento();
 
                 repaint();
-
-
-                System.out.println("Bus: " + seleccion + ", Asiento: " + numero_asiento_comprar);
             }
         }
 
-        if(e.getSource() == mostrar_info_asiento){
-            tipoAsiento asiento = asientos.get(indice_asiento_seleccionado);
-            System.out.println("Precio: " + asiento.precioAsiento());
-            System.out.println("Estado: " + asiento.estadoAsiento());
+        if(e.getSource() == boton_guardar_boleto){
+            guardar_boleto(asiento_comprado);
+            JOptionPane.showMessageDialog(null, "Su boleto ha sido guardado con éxito, revise HistorialBoletos. Además, puede ver su boleto presionando Ver boleto", "Información boleto", JOptionPane.PLAIN_MESSAGE);
         }
 
+        if(e.getSource() == boton_ver_boleto){
+            panel_boleto = new PanelBoleto(nombre, fecha, ruta_final, precio_ruta+precio, asiento_comprado);
+            if(!panel_asiento_prueba.isAncestorOf(panel_boleto)){
+                panel_asiento_prueba.add(panel_boleto);
+                panel_boleto.setBounds(8,300,300,300);
+            }
+        }
 
+        if(e.getSource() == checkear_botones){
+            tipoAsiento asiento_seleccionado = asientos.get(indice_asiento_seleccionado);
+            if(!asiento_seleccionado.estadoAsiento()){
+                boton_comprar_asiento.setEnabled(false);
+            } else{
+                boton_comprar_asiento.setEnabled(true);
+            }
 
+            if(asiento_comprado != null){
+                if(asiento_comprado.equals(asiento_seleccionado)){
+                    boton_guardar_boleto.setEnabled(true);
+                    boton_ver_boleto.setEnabled(true);
+                } else{
+                    boton_guardar_boleto.setEnabled(false);
+                    boton_ver_boleto.setEnabled(false);
 
-
-//        for(JButton botones_buses : buses.tipoAsientos()){
-//            if(e.getSource() == botones_buses){
-//                System.out.println("sdfsdfsdfsdf");
-//
-//                repaint();
-//            }
-//        }
-
+                    if(panel_boleto != null ){
+                        if(panel_asiento_prueba.isAncestorOf(panel_boleto)){
+                            panel_asiento_prueba.remove(panel_boleto);
+                        }
+                    }
+                }
+            }
+            repaint();
+        }
     }
-    public void comprarAsiento(){
 
+    public void guardar_boleto(tipoAsiento asiento){
+        String nombrearchivo = "./src/main/java/Vistas/HistorialBoletos.txt";
+        File archivo = new File(nombrearchivo);
+
+        int precio_total = precio_ruta + precio;
+        try{
+            FileWriter escritor = new FileWriter(archivo, true);
+            PrintWriter printWriter = new PrintWriter(escritor);
+
+            printWriter.println("");
+
+            printWriter.println("------------------------------------");
+            printWriter.println("Nombre: " + nombre);
+            printWriter.println("Asiento: " + asiento.getID() + ", " + asiento.getTipoAsiento());
+            printWriter.println("Fecha de viaje: " + fecha);
+            printWriter.println("Precio pagado: $" + precio_total);
+            printWriter.println("¡Buen viaje!");
+            printWriter.println("------------------------------------");
+            printWriter.close();
+        } catch (Exception e){
+            System.err.println(e);
+        }
     }
 
 }
