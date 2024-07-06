@@ -194,9 +194,8 @@ public class PanelAsientos extends JPanel implements ActionListener {
 
     public void configurarPanel(int i){
         if(i == 1){
-            panel_contenedor_grilla.setBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
             panel_contenedor_grilla.setLayout(null);
-            panel_contenedor_grilla.setPreferredSize(new Dimension(300,0));
+            panel_contenedor_grilla.setPreferredSize(new Dimension(350,0));
             panel_contenedor_grilla.setOpaque(false);
             this.add(panel_contenedor_grilla, BorderLayout.WEST);
         }
@@ -204,14 +203,11 @@ public class PanelAsientos extends JPanel implements ActionListener {
         if(i == 2){
             panel_grilla.setLayout(null);
             panel_grilla.setBounds(42,145,240,520);
-            panel_grilla.setBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
             panel_grilla.setOpaque(false);
             panel_contenedor_grilla.add(panel_grilla);
         }
 
         if(i == 3){
-            panel_info_asientos.setPreferredSize(new Dimension(150, 0));
-            panel_info_asientos.setBorder(BorderFactory.createLineBorder(Color.BLUE, 3));
             panel_info_asientos.setLayout(null);
             this.add(panel_info_asientos, BorderLayout.CENTER);
         }
@@ -323,7 +319,7 @@ public class PanelAsientos extends JPanel implements ActionListener {
             panel_boleto = new PanelBoleto(nombre, fecha, ruta_final, precio_ruta+precio, asiento_comprado);
             if(!panel_asiento_prueba.isAncestorOf(panel_boleto)){
                 panel_asiento_prueba.add(panel_boleto);
-                panel_boleto.setBounds(8,300,300,300);
+                panel_boleto.setBounds(2,320,320,300);
             }
         }
 

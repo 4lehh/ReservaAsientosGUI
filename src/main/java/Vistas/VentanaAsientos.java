@@ -11,7 +11,7 @@ public class VentanaAsientos extends JFrame {
     public VentanaAsientos(Buses bus_disponible, String nombre, String fecha, String ruta_final, int precio_ruta, int seleccion){
         this.setLayout(null);
         panel_asientos = new PanelAsientos(bus_disponible, nombre, fecha, ruta_final, precio_ruta, seleccion);
-        panel_asientos.setBounds(0,0,600,750);
+        panel_asientos.setBounds(0,0,650,750);
         this.add(panel_asientos);
 
 
@@ -19,7 +19,7 @@ public class VentanaAsientos extends JFrame {
 
     public void mostrarAsientos(){
         // -------------- Visualizacion ventana --------------
-        this.setSize(500,750);
+        this.setSize(650,750);
         this.setTitle("Asientos");
         this.setVisible(true);
         this.setResizable(false);
