@@ -77,7 +77,7 @@ public class PanelDatos extends JPanel implements ActionListener {
         boton_siguiente.setEnabled(false);
         boton_siguiente.setBackground(new Color(110, 105, 105, 255));
         boton_siguiente.setForeground(Color.WHITE);
-        boton_siguiente.setBounds(270,380,120,40);
+        boton_siguiente.setBounds(150,380,120,40);
         boton_siguiente.addActionListener(this);
 
         comprobar_datos = new Timer(100, this);
@@ -112,7 +112,6 @@ public class PanelDatos extends JPanel implements ActionListener {
                 return;
             }
 
-            System.out.println(fecha_simple);
             this.remove(panel_inferior);
             this.remove(panel_superior);
 
@@ -139,7 +138,7 @@ public class PanelDatos extends JPanel implements ActionListener {
         if(i == 1){ // PANEL SUPERIOR
             panel.setLayout(new BorderLayout());
             panel.setPreferredSize(new Dimension(0, 75));
-            panel.setBackground(new Color(115,102,102));
+            panel.setBackground(new Color(82, 5,123));
             // panel.setBorder(BorderFactory.createLineBorder(Color.GREEN));
             JLabel titulo = new JLabel("Datos", SwingConstants.CENTER);
             titulo.setFont(new Font("Arial", Font.BOLD, 24));
@@ -149,7 +148,7 @@ public class PanelDatos extends JPanel implements ActionListener {
         }
 
         if(i == 2){ // PANEL INFERIOR
-            panel.setBackground(Color.PINK);
+            panel.setBackground(new Color(152,141,242));
             // panel.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
             panel.setLayout(null);
             this.add(panel, BorderLayout.CENTER);
@@ -165,6 +164,7 @@ public class PanelDatos extends JPanel implements ActionListener {
         if(i == 4){ // PANEL NOMBRE
             panel.setLayout(new FlowLayout(FlowLayout.LEFT, 0,10));
             panel.setBackground(Color.CYAN);
+            panel.setOpaque(false);
             panel.setBounds(0,0,450,60);
             panel_preguntas.add(panel);
 
@@ -181,6 +181,7 @@ public class PanelDatos extends JPanel implements ActionListener {
         if(i == 5){ // PANEL ORIGEN
             panel.setLayout(new FlowLayout(FlowLayout.LEFT, 5,10));
             panel.setBackground(Color.CYAN);
+            panel.setOpaque(false);
             panel.setBounds(0,100,450,60);
             panel_preguntas.add(panel);
 
@@ -197,6 +198,7 @@ public class PanelDatos extends JPanel implements ActionListener {
         if(i == 6){ // PANEL DESTINO
             panel.setLayout(new FlowLayout(FlowLayout.LEFT, 5,10));
             panel.setBackground(Color.CYAN);
+            panel.setOpaque(false);
             panel.setBounds(0,200,450,60);
             panel_preguntas.add(panel);
 
@@ -213,6 +215,7 @@ public class PanelDatos extends JPanel implements ActionListener {
         if(i == 7){ // PANEL FECHA
             panel.setLayout(new FlowLayout(FlowLayout.LEFT, 5,10));
             panel.setBackground(Color.CYAN);
+            panel.setOpaque(false);
             panel.setBounds(0,300,450,60);
             panel_preguntas.add(panel);
 
@@ -224,7 +227,6 @@ public class PanelDatos extends JPanel implements ActionListener {
             dateChooser.setPreferredSize(new Dimension(317, 40));
             panel.add(dateChooser);
         }
-
 
     }
 }

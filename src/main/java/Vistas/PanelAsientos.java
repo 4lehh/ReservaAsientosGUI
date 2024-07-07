@@ -72,11 +72,12 @@ public class PanelAsientos extends JPanel implements ActionListener {
         this.fecha = fecha;
         this.ruta_final = ruta_final;
         this.precio_ruta = precio_ruta;
+        this.setBackground(new Color(82, 5, 123));
+        this.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
 
         this.seleccion = seleccion;
         // -------------- Configurar Panel ---------------------
         this.setLayout(new BorderLayout());
-        this.setOpaque(false);
         this.bus_seleccionado = bus_seleccionado;
         this.asientos = bus_seleccionado.getAsientos();
 
@@ -183,11 +184,15 @@ public class PanelAsientos extends JPanel implements ActionListener {
 
         // ESTADO DEL ASIENTO
         if(estado){
-            label_estado.setText("DISPONIBLE");
-            label_estado.setForeground(Color.GREEN);
+            label_estado.setText("     DISPONIBLE");
+            label_estado.setForeground(Color.BLACK);
+            label_estado.setBackground(new Color(0, 166, 50));
+            label_estado.setOpaque(true);
         } else{
-            label_estado.setText("NO DISPONIBLE");
-            label_estado.setForeground(Color.RED);
+            label_estado.setText(" NO DISPONIBLE");
+            label_estado.setForeground(Color.BLACK);
+            label_estado.setBackground(new Color(230, 8, 8));
+            label_estado.setOpaque(true);
         }
 
         label_precio.setText("" + precio);
@@ -204,7 +209,6 @@ public class PanelAsientos extends JPanel implements ActionListener {
             panel_contenedor_grilla.setLayout(null);
             panel_contenedor_grilla.setPreferredSize(new Dimension(350,0));
             panel_contenedor_grilla.setOpaque(false);
-            panel_contenedor_grilla.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
 
             if(bus_seleccionado.getTipoBus().equals("Bus 2 pisos")){
                 boton_cambiar_piso.setBounds(85, 650, 150, 40);
@@ -223,11 +227,13 @@ public class PanelAsientos extends JPanel implements ActionListener {
 
         if(i == 3){
             panel_info_asientos.setLayout(null);
+            panel_info_asientos.setBackground(new Color(152, 141, 242));
             this.add(panel_info_asientos, BorderLayout.CENTER);
         }
 
         if(i == 4){
             panel_asiento_prueba.setLayout(null);
+            panel_asiento_prueba.setBackground(new Color(152, 141, 242));
             panel_asiento_prueba.setBounds(10,80, 260,500);
         }
     }
@@ -236,7 +242,6 @@ public class PanelAsientos extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == boton_comprar_asiento) {
-            System.out.println(indice_asiento_seleccionado);
             asiento_comprado = asientos.get(indice_asiento_seleccionado);
             if (numero_asiento_comprar != 0){
                 try {
@@ -259,7 +264,7 @@ public class PanelAsientos extends JPanel implements ActionListener {
                     if(lineas.get(indice).equals("0")){
                         lineas.set(indice, "1");
                     } else{
-                        System.out.println("No es posible la compra");
+                        JOptionPane.showMessageDialog(null, "No es posible realizar la compra.", "Compra", JOptionPane.PLAIN_MESSAGE);
                     }
 
 
@@ -287,16 +292,13 @@ public class PanelAsientos extends JPanel implements ActionListener {
 
             if(i < 36){
                 if (e.getSource() == bus_seleccionado.getBotonesAsientos().get(i)) {
-                    System.out.println(bus_seleccionado.getBotonesAsientos().size());
-                    System.out.println(bus_seleccionado.getBotonesAsientosPiso2().size());
                     panel_info_asientos.add(panel_asiento_prueba);
                     tipoAsiento asiento = asientos.get(i);
-                    System.out.println(asiento.getID());
                     indice_asiento_seleccionado = i;
 
                     String id_asiento = asiento.getID();
                     String numeros = id_asiento.replaceAll("[^0-9]", "");
-                    numero_asiento_comprar = Integer.parseInt(numeros) + (36 * seleccion);
+                    numero_asiento_comprar = Integer.parseInt(numeros) + (72 * seleccion);
 
                     try {
                         // Importamos el archivo
@@ -330,16 +332,13 @@ public class PanelAsientos extends JPanel implements ActionListener {
                 }
             } else{
                 if (e.getSource() == bus_seleccionado.getBotonesAsientosPiso2().get(i-36)) {
-                    System.out.println(bus_seleccionado.getBotonesAsientos().size());
-                    System.out.println(bus_seleccionado.getBotonesAsientosPiso2().size());
                     panel_info_asientos.add(panel_asiento_prueba);
                     tipoAsiento asiento = asientos.get(i);
-                    System.out.println(asiento.getID());
                     indice_asiento_seleccionado = i;
 
                     String id_asiento = asiento.getID();
                     String numeros = id_asiento.replaceAll("[^0-9]", "");
-                    numero_asiento_comprar = Integer.parseInt(numeros) + (36 * seleccion);
+                    numero_asiento_comprar = Integer.parseInt(numeros) + (72 * seleccion);
 
                     try {
                         // Importamos el archivo

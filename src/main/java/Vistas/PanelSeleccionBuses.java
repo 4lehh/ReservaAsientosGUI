@@ -50,7 +50,6 @@ public class PanelSeleccionBuses extends JPanel implements ActionListener {
 
         this.setLayout(new BorderLayout());
         this.setBackground(Color.PINK);
-        // this.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
         this.setBounds(0,0, 500,0);
 
 
@@ -77,9 +76,10 @@ public class PanelSeleccionBuses extends JPanel implements ActionListener {
         int i = 0;
         for(JPanel panel : paneles){
             JRadioButton seleccionar = new JRadioButton("Seleccionar Bus");
+            seleccionar.setBackground(new Color(152, 141, 242));
             seleccionar.addActionListener(this);
             seleccionar.setFocusable(false);
-            seleccionar.setBounds(400, 50, 140,40);
+            seleccionar.setBounds(400, 40, 140,30);
             botones_buses.add(seleccionar);
             buttonGroup.add(seleccionar);
             indices_botones[i] = i;
@@ -89,11 +89,22 @@ public class PanelSeleccionBuses extends JPanel implements ActionListener {
             panel_opciones.add(panel);
         }
 
+
+        JPanel panel_contenedor_boton = new JPanel();
+        panel_contenedor_boton.setLayout(null);
+        panel_contenedor_boton.setPreferredSize(new Dimension(500, 40));
+        panel_contenedor_boton.setBackground(new Color(152, 141, 242));
+
+
         boton_seleccionar = new JButton("Seleccionar asiento");
         boton_seleccionar.setFocusable(false);
-        panel_opciones.add(boton_seleccionar);
-        boton_seleccionar.setBounds(200,210,200,40);
+        boton_seleccionar.setBounds(180,40,200,50);
         boton_seleccionar.addActionListener(this);
+        panel_contenedor_boton.add(boton_seleccionar);
+
+        panel_opciones.add(panel_contenedor_boton);
+
+
 
 
     }
@@ -101,11 +112,7 @@ public class PanelSeleccionBuses extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == boton_seleccionar){
-
             Buses busSeleccionado = buses.get(seleccion);
-            String semen = busSeleccionado.getTipoBus();
-            System.out.println(semen);
-
             asientos = new VentanaAsientos(busSeleccionado, nombre, fecha, ruta_final, precio_ruta, seleccion);
             asientos.mostrarAsientos();
         }
@@ -113,7 +120,6 @@ public class PanelSeleccionBuses extends JPanel implements ActionListener {
         for(int i = 0;i< botones_buses.size();i++){
             if(e.getSource() == botones_buses.get(i)){
                 seleccion = i;
-                System.out.println(seleccion);
             }
         }
     }
@@ -127,8 +133,7 @@ public class PanelSeleccionBuses extends JPanel implements ActionListener {
         if (i == 1) {
             panel_superior.setLayout(new BorderLayout());
             panel_superior.setPreferredSize(new Dimension(0, 75));
-            panel_superior.setBackground(new Color(115, 102, 102));
-            // panel_superior.setBorder(BorderFactory.createLineBorder(Color.GREEN));
+            panel_superior.setBackground(new Color(82, 5, 123));
             JLabel titulo = new JLabel("Selección de bus", SwingConstants.CENTER);
             titulo.setFont(new Font("Arial", Font.BOLD, 24));
             titulo.setForeground(Color.WHITE);
@@ -143,7 +148,7 @@ public class PanelSeleccionBuses extends JPanel implements ActionListener {
 
         if (i == 2) {
             panel_opciones.setLayout(new BoxLayout(panel_opciones, BoxLayout.Y_AXIS));
-            panel_opciones.setOpaque(false);
+            panel_opciones.setBackground(new Color(152, 141, 242));
             panel_opciones.setPreferredSize(new Dimension(550, 0));
             this.add(panel_opciones, BorderLayout.CENTER);
 

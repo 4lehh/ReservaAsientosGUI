@@ -23,7 +23,6 @@ public class ManejoBuses {
         } catch(RutaInvalidaException e){
             System.out.println("Error, " + e);
         }
-        System.out.println("Nombre: " + nombre + ". Ruta: " + nombreDestino + ". Precio: " + precio);
 
     }
 
