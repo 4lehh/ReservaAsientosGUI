@@ -7,12 +7,14 @@ import java.util.ArrayList;
 public class Bus_1 extends Buses {
     private LocalTime hora_partida;
     public ArrayList<JButton> asientos;
+    public ArrayList<JButton> asientos_piso2;
     public ArrayList<tipoAsiento> asientos_del_bus;
     int pos_y = 0;
 
     public Bus_1(LocalTime hora){
         hora_partida = hora;
         asientos = new ArrayList<JButton>();
+        asientos_piso2 = new ArrayList<JButton>();
         asientos_del_bus = new ArrayList<tipoAsiento>();
         tipoAsiento a;
 
@@ -106,8 +108,13 @@ public class Bus_1 extends Buses {
         return "Bus 1 piso";
     }
 
-    public ArrayList<JButton> tipoAsientos(){
+    public ArrayList<JButton> getBotonesAsientos(){
         return asientos;
+    }
+
+    @Override
+    public ArrayList<JButton> getBotonesAsientosPiso2() {
+        return asientos_piso2;
     }
 
     public ArrayList<tipoAsiento> getAsientos(){

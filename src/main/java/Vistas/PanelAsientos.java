@@ -25,6 +25,7 @@ public class PanelAsientos extends JPanel implements ActionListener {
     // -------------- BG -----------------
     private BufferedImage bg_piso1;
     private BufferedImage bg_piso2;
+    private BufferedImage bg_actual;
 
     // --------- Panel -------------
     private JPanel panel_contenedor_grilla;
@@ -37,7 +38,7 @@ public class PanelAsientos extends JPanel implements ActionListener {
     // ------------- Enteros -------------
     private int salto_y = 0;
 
-    private Buses buses;
+    private Buses bus_seleccionado;
 
     JButton boton_comprar_asiento;
     Boolean estado = false;
@@ -47,7 +48,6 @@ public class PanelAsientos extends JPanel implements ActionListener {
     JLabel label_nombre_asiento;
     JLabel label_tipo_asiento;
     int precio;
-    String texto_estado;
 
     ArrayList<tipoAsiento> asientos;
     int indice_asiento_seleccionado;
@@ -57,7 +57,6 @@ public class PanelAsientos extends JPanel implements ActionListener {
 
     Timer checkear_botones;
 
-    JButton mostrar_info_asiento;
     String nombre;
     String fecha;
     String ruta_final;
@@ -65,7 +64,10 @@ public class PanelAsientos extends JPanel implements ActionListener {
 
     int seleccion;
     int numero_asiento_comprar = 0;
-    public PanelAsientos(Buses bus_disponibles, String nombre, String fecha, String ruta_final, int precio_ruta, int seleccion) {
+
+    JButton boton_cambiar_piso;
+    boolean es_piso2 = false;
+    public PanelAsientos(Buses bus_seleccionado, String nombre, String fecha, String ruta_final, int precio_ruta, int seleccion) {
         this.nombre = nombre;
         this.fecha = fecha;
         this.ruta_final = ruta_final;
@@ -75,11 +77,16 @@ public class PanelAsientos extends JPanel implements ActionListener {
         // -------------- Configurar Panel ---------------------
         this.setLayout(new BorderLayout());
         this.setOpaque(false);
-        this.buses = bus_disponibles;
-        this.asientos = buses.getAsientos();
+        this.bus_seleccionado = bus_seleccionado;
+        this.asientos = bus_seleccionado.getAsientos();
 
         // --------- Panel Grilla ----------------
         panel_contenedor_grilla = new JPanel();
+        // boton_cambiar_piso solo visible si se selecciona bus de 2 pisos
+        boton_cambiar_piso = new JButton("Cambiar piso");
+        panel_contenedor_grilla.add(boton_cambiar_piso);
+        boton_cambiar_piso.setFocusable(false);
+        boton_cambiar_piso.addActionListener(this);
         configurarPanel(1);
 
         panel_grilla = new JPanel();
@@ -90,7 +97,7 @@ public class PanelAsientos extends JPanel implements ActionListener {
         try{
             bg_piso1 = ImageIO.read(new File("./src/main/resources/Imagenes/bus-1.png"));
             bg_piso2 = ImageIO.read(new File("./src/main/resources/Imagenes/bus-2.png"));
-
+            bg_actual = bg_piso1;
         } catch (IOException e){
             System.out.println(e);
         }
@@ -99,9 +106,9 @@ public class PanelAsientos extends JPanel implements ActionListener {
         int contador = 0;
 
         // --------------------- ACTION LISTENER ----------------
-        for(JButton botones_buses : buses.tipoAsientos()){
-            panel_grilla.add(botones_buses);
-            botones_buses.addActionListener(this);
+        for(JButton boton_asiento : bus_seleccionado.getBotonesAsientos()){
+            panel_grilla.add(boton_asiento);
+            boton_asiento.addActionListener(this);
         }
 
         panel_info_asientos = new JPanel();
@@ -159,13 +166,13 @@ public class PanelAsientos extends JPanel implements ActionListener {
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
-        if(bg_piso1 != null){
-            Image escalada = bg_piso1.getScaledInstance(320, 720, Image.SCALE_SMOOTH);
+        if(bg_actual != null){
+            Image escalada = bg_actual.getScaledInstance(320, 720, Image.SCALE_SMOOTH);
             g2d.drawImage(escalada, 0,0,this);
         }
 
         if(indice_asiento_seleccionado+1 != 0){
-            for (int i = 0; i < buses.tipoAsientos().size(); i++) {
+            for (int i = 0; i < bus_seleccionado.getBotonesAsientos().size() + bus_seleccionado.getBotonesAsientosPiso2().size(); i++) {
                 if(i == indice_asiento_seleccionado){
                     tipoAsiento asiento = asientos.get(i);
                     label_nombre_asiento.setText("Asiento: " + asiento.getID());
@@ -197,6 +204,13 @@ public class PanelAsientos extends JPanel implements ActionListener {
             panel_contenedor_grilla.setLayout(null);
             panel_contenedor_grilla.setPreferredSize(new Dimension(350,0));
             panel_contenedor_grilla.setOpaque(false);
+            panel_contenedor_grilla.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
+
+            if(bus_seleccionado.getTipoBus().equals("Bus 2 pisos")){
+                boton_cambiar_piso.setBounds(85, 650, 150, 40);
+            }
+
+
             this.add(panel_contenedor_grilla, BorderLayout.WEST);
         }
 
@@ -222,6 +236,7 @@ public class PanelAsientos extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == boton_comprar_asiento) {
+            System.out.println(indice_asiento_seleccionado);
             asiento_comprado = asientos.get(indice_asiento_seleccionado);
             if (numero_asiento_comprar != 0){
                 try {
@@ -268,46 +283,96 @@ public class PanelAsientos extends JPanel implements ActionListener {
 
 
 
-        for (int i = 0; i < buses.tipoAsientos().size(); i++) {
-            if (e.getSource() == buses.tipoAsientos().get(i)) {
-                panel_info_asientos.add(panel_asiento_prueba);
-                tipoAsiento asiento = asientos.get(i);
-                indice_asiento_seleccionado = i;
+        for (int i = 0; i < bus_seleccionado.getBotonesAsientos().size() + bus_seleccionado.getBotonesAsientosPiso2().size(); i++) {
 
-                String id_asiento = asiento.getID();
-                String numeros = id_asiento.replaceAll("[^0-9]", "");
-                numero_asiento_comprar = Integer.parseInt(numeros) + (36 * seleccion);
+            if(i < 36){
+                if (e.getSource() == bus_seleccionado.getBotonesAsientos().get(i)) {
+                    System.out.println(bus_seleccionado.getBotonesAsientos().size());
+                    System.out.println(bus_seleccionado.getBotonesAsientosPiso2().size());
+                    panel_info_asientos.add(panel_asiento_prueba);
+                    tipoAsiento asiento = asientos.get(i);
+                    System.out.println(asiento.getID());
+                    indice_asiento_seleccionado = i;
 
-                try {
-                    // Importamos el archivo
-                    File archivo = new File("./src/main/java/Modelo/datos.txt");
+                    String id_asiento = asiento.getID();
+                    String numeros = id_asiento.replaceAll("[^0-9]", "");
+                    numero_asiento_comprar = Integer.parseInt(numeros) + (36 * seleccion);
 
-                    // Leer el archivo y almacenar las líneas en una lista
-                    BufferedReader leer = new BufferedReader(new FileReader(archivo));
-                    List<String> lineas = new ArrayList<>();
-                    String linea;
+                    try {
+                        // Importamos el archivo
+                        File archivo = new File("./src/main/java/Modelo/datos.txt");
 
-                    while ((linea = leer.readLine()) != null) {
-                        lineas.add(linea);
+                        // Leer el archivo y almacenar las líneas en una lista
+                        BufferedReader leer = new BufferedReader(new FileReader(archivo));
+                        List<String> lineas = new ArrayList<>();
+                        String linea;
+
+                        while ((linea = leer.readLine()) != null) {
+                            lineas.add(linea);
+                        }
+                        leer.close();
+
+                        if(lineas.get(numero_asiento_comprar - 1).equals("1")){
+                            tipoAsiento asient = asientos.get(indice_asiento_seleccionado);
+                            asient.setEstado(false);
+                            estado = asient.estadoAsiento();
+                        }
+
+
+                    } catch (IOException p) {
+                        p.printStackTrace(System.out);
                     }
-                    leer.close();
 
-                    if(lineas.get(numero_asiento_comprar - 1).equals("1")){
-                        tipoAsiento asient = asientos.get(indice_asiento_seleccionado);
-                        asient.setEstado(false);
-                        estado = asient.estadoAsiento();
-                    }
+                    estado = asiento.estadoAsiento();
+                    precio = asiento.precioAsiento();
 
-
-                } catch (IOException p) {
-                    p.printStackTrace(System.out);
+                    repaint();
                 }
+            } else{
+                if (e.getSource() == bus_seleccionado.getBotonesAsientosPiso2().get(i-36)) {
+                    System.out.println(bus_seleccionado.getBotonesAsientos().size());
+                    System.out.println(bus_seleccionado.getBotonesAsientosPiso2().size());
+                    panel_info_asientos.add(panel_asiento_prueba);
+                    tipoAsiento asiento = asientos.get(i);
+                    System.out.println(asiento.getID());
+                    indice_asiento_seleccionado = i;
 
-                estado = asiento.estadoAsiento();
-                precio = asiento.precioAsiento();
+                    String id_asiento = asiento.getID();
+                    String numeros = id_asiento.replaceAll("[^0-9]", "");
+                    numero_asiento_comprar = Integer.parseInt(numeros) + (36 * seleccion);
 
-                repaint();
+                    try {
+                        // Importamos el archivo
+                        File archivo = new File("./src/main/java/Modelo/datos.txt");
+
+                        // Leer el archivo y almacenar las líneas en una lista
+                        BufferedReader leer = new BufferedReader(new FileReader(archivo));
+                        List<String> lineas = new ArrayList<>();
+                        String linea;
+
+                        while ((linea = leer.readLine()) != null) {
+                            lineas.add(linea);
+                        }
+                        leer.close();
+
+                        if(lineas.get(numero_asiento_comprar - 1).equals("1")){
+                            tipoAsiento asient = asientos.get(indice_asiento_seleccionado);
+                            asient.setEstado(false);
+                            estado = asient.estadoAsiento();
+                        }
+
+
+                    } catch (IOException p) {
+                        p.printStackTrace(System.out);
+                    }
+
+                    estado = asiento.estadoAsiento();
+                    precio = asiento.precioAsiento();
+
+                    repaint();
+                }
             }
+
         }
 
         if(e.getSource() == boton_guardar_boleto){
@@ -347,6 +412,34 @@ public class PanelAsientos extends JPanel implements ActionListener {
                 }
             }
             repaint();
+        }
+
+        if(e.getSource() == boton_cambiar_piso){
+            if(bg_actual == bg_piso1){
+                bg_actual = bg_piso2;
+            } else{
+                bg_actual = bg_piso1;
+            }
+
+            es_piso2 = !es_piso2;
+            panel_grilla.removeAll();
+            repaint();
+            if(es_piso2){
+                for(JButton boton_asiento : bus_seleccionado.getBotonesAsientosPiso2()){
+                    panel_grilla.add(boton_asiento);
+                    boton_asiento.addActionListener(this);
+                }
+            } else if(es_piso2 == false){
+                for(JButton boton_asiento : bus_seleccionado.getBotonesAsientos()){
+                    panel_grilla.add(boton_asiento);
+                    boton_asiento.addActionListener(this);
+                }
+            }
+
+
+
+            repaint();
+            revalidate();
         }
     }
 
