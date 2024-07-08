@@ -34,10 +34,10 @@ IMAGEN
    Cuando ya te decides en que asiento viajar, al momento de comprar el boleto, se te entregará un boleto con los datos de viaje, el asiento y la fecha de viaje.
 
 ### Diagrama UML
-[![UML](https://github.com/Zaiik03/ExpendedorGUI/blob/main/src/main/Imagenes/UML-ExpendedorGUI.png "UML")](https://github.com/Zaiik03/ExpendedorGUI/blob/main/src/main/Imagenes/UML-ExpendedorGUI.png "UML")
+[![UML](https://github.com/huebitoo/ReservaAsientosGUI/blob/main/src/main/resources/ImagenesReadMe/UMLProyectoFinal.png "UML")](https://github.com/huebitoo/ReservaAsientosGUI/blob/main/src/main/resources/ImagenesReadMe/UMLProyectoFinal.png "UML")
 
-### Interfaz Expendedor
-[![Expendedor](https://github.com/Zaiik03/ExpendedorGUI/blob/main/src/main/Imagenes/expendedor.png "Expendedor")](https://github.com/Zaiik03/ExpendedorGUI/blob/main/src/main/Imagenes/expendedor.png "Expendedor")
+### Formulario Comprador
+[![Form](https://github.com/huebitoo/ReservaAsientosGUI/blob/main/src/main/resources/ImagenesReadMe/formulario.png "Form")](https://github.com/huebitoo/ReservaAsientosGUI/blob/main/src/main/resources/ImagenesReadMe/formulario.png "Form")
 
 ### Interfaz Inventario
 [![Inventario](https://github.com/Zaiik03/ExpendedorGUI/blob/main/src/main/Imagenes/inventario.png "Inventario")](https://github.com/Zaiik03/ExpendedorGUI/blob/main/src/main/Imagenes/inventario.png "Inventario")
