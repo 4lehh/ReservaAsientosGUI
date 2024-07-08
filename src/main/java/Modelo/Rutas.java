@@ -1,5 +1,8 @@
 package Modelo;
 
+/**
+ * Enum para definir las rutas existentes
+ */
 public enum Rutas {
     // ---------- Rutas ---------
 
@@ -14,20 +17,38 @@ public enum Rutas {
     private final String partida;
     private final String llegada;
 
+    /**
+     * Constructor
+     * @param precio precio de la ruta
+     * @param partida lugar de partida
+     * @param llegada lugar de origen
+     */
     Rutas(int precio, String partida, String llegada){
         this.precio = precio;
         this.partida = partida;
         this.llegada = llegada;
     }
 
+    /**
+     * Método getter
+     * @return retorna el precio de la ruta
+     */
     public int precioRuta(){
         return precio;
     }
 
+    /**
+     * Método getter
+     * @return retorna lugar de partida
+     */
     public String getPartida(){
         return partida;
     }
 
+    /**
+     * Método getter
+     * @return retorna el lugar de destino
+     */
     public String getLlegada(){
         return llegada;
     }

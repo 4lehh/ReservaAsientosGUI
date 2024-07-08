@@ -1,10 +1,25 @@
 package Modelo;
 
+/**
+ * Clase Factory de rutas para crear todas las rutas existentes
+ */
 public class RutasFactory {
 
+    /**
+     * Precio de la ruta
+     */
     private int precio;
+    /**
+     * Ruta completa
+     */
     public String ruta_final;
 
+    /**
+     * Método que configura las rutas
+     * @param punto_inicio lugar de origen
+     * @param punto_final lugar de destino
+     * @throws RutaInvalidaException en caso de que se elija un ruta inválida
+     */
     public void obtenerRuta(String punto_inicio, String punto_final) throws RutaInvalidaException{
         if(punto_inicio.equals(Rutas.CONCE_CHIGUA.getPartida()) && punto_final.equals(Rutas.CONCE_CHIGUA.getLlegada())){
             this.precio = Rutas.CONCE_CHIGUA.precioRuta();
@@ -72,6 +87,10 @@ public class RutasFactory {
         }
     }
 
+    /**
+     * Método getter
+     * @return retorna el precio de la ruta
+     */
     public int getPrecio(){
         return this.precio;
     }

@@ -6,13 +6,26 @@ import java.util.List;
 import java.util.Random;
 import java.io.*;
 
+/**
+ * Clase que sirve para el manejo de los buses (ruta, precio de ruta)
+ */
 public class ManejoBuses {
-    // ------------ Strings ---------------
+    /**
+     * Nombre de la ruta completa
+     */
     private String nombreDestino;
 
-    // ------------ int --------------
+    /**
+     * Precio de la ruta
+     */
     private int precio;
 
+    /**
+     * Constructor
+     * @param nombre
+     * @param punto_inicio lugar de partida
+     * @param punto_final lugar de destino
+     */
     public ManejoBuses(String nombre, String punto_inicio, String punto_final){
         // ------------ RUTA -------------
         RutasFactory ruta = new RutasFactory();
@@ -26,6 +39,10 @@ public class ManejoBuses {
 
     }
 
+    /**
+     * Método getter
+     * @return retorna un array de buses
+     */
     public ArrayList<Buses> getBuses(){
 
         // ---------------- Arreglar -----------------
@@ -44,10 +61,18 @@ public class ManejoBuses {
         return m;
     }
 
+    /**
+     * Método getter
+     * @return retorna el precio de la ruta
+     */
     public int getPrecio_ruta(){
         return this.precio;
     }
 
+    /**
+     * Método getter
+     * @return retorna la ruta
+     */
     public String getRuta(){
         return nombreDestino;
     }

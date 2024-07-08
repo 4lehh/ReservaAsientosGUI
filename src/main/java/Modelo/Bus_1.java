@@ -4,13 +4,35 @@ import javax.swing.*;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
+/**
+ * Clase que representa a un bus de 1 piso
+ */
 public class Bus_1 extends Buses {
+    /**
+     * Variable que representa hora de partida del bus
+     */
     private LocalTime hora_partida;
+    /**
+     * Array interno de botones asociados a sus asientos del primer piso
+     */
     public ArrayList<JButton> asientos;
+    /**
+     * Array interno de botones asociados a sus asientos del segundo piso (que tiene 0 asientos)
+     */
     public ArrayList<JButton> asientos_piso2;
+    /**
+     * Array interno de asientos del bus
+     */
     public ArrayList<tipoAsiento> asientos_del_bus;
+    /**
+     * Posicion en y de cada boton
+     */
     int pos_y = 0;
 
+    /**
+     * Constructor
+     * @param hora hora de partida del bus
+     */
     public Bus_1(LocalTime hora){
         hora_partida = hora;
         asientos = new ArrayList<JButton>();
@@ -98,25 +120,45 @@ public class Bus_1 extends Buses {
         }
     }
 
+    /**
+     * Método getter
+     * @return retorna la hora de partida del bus
+     */
     @Override
     public LocalTime getHora_partida(){
         return hora_partida;
     }
 
+    /**
+     * Método getter
+     * @return retorna el tipo de bus como String
+     */
     @Override
     public String getTipoBus(){
         return "Bus 1 piso";
     }
 
+    /**
+     * Método getter
+     * @return retorna el array de botones de los asientos del primer piso
+     */
     public ArrayList<JButton> getBotonesAsientos(){
         return asientos;
     }
 
+    /**
+     * Método getter
+     * @return retorna el array de botones de los asientos del segundo piso (que tiene 0 asientos)
+     */
     @Override
     public ArrayList<JButton> getBotonesAsientosPiso2() {
         return asientos_piso2;
     }
 
+    /**
+     * Método getter
+     * @return retorna el array de asientos del bus
+     */
     public ArrayList<tipoAsiento> getAsientos(){
         return asientos_del_bus;
     }

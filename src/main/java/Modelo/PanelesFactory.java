@@ -8,11 +8,24 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.time.LocalDate;
 
+/**
+ * Clase factory de paneles
+ */
 public class PanelesFactory {
 
+    /**
+     * Array para guardar paneles
+     */
     private ArrayList<JPanel> paneles;
     private int incremento_y = 0;
 
+    /**
+     * Constructor
+     * @param array_bus array de buses
+     * @param precio_ruta precio de la ruta
+     * @param fecha_viaje fecha del vuiaje
+     * @return retorna el array de paneles configurado
+     */
     public ArrayList<JPanel> crearPaneles(ArrayList<Buses> array_bus, int precio_ruta, Date fecha_viaje){
         paneles = new ArrayList<JPanel>();
         LocalTime hora_actual = LocalTime.now();

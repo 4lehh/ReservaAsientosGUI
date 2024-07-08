@@ -19,7 +19,6 @@ import java.io.*;
 
 import Modelo.*;
 
-
 public class PanelAsientos extends JPanel implements ActionListener {
 
     // -------------- BG -----------------
@@ -28,6 +27,7 @@ public class PanelAsientos extends JPanel implements ActionListener {
     private BufferedImage bg_actual;
 
     // --------- Panel -------------
+
     private JPanel panel_contenedor_grilla;
     private JPanel panel_grilla;
     private JPanel panel_info_asientos;
@@ -57,6 +57,7 @@ public class PanelAsientos extends JPanel implements ActionListener {
 
     Timer checkear_botones;
 
+
     String nombre;
     String fecha;
     String ruta_final;
@@ -67,13 +68,13 @@ public class PanelAsientos extends JPanel implements ActionListener {
 
     JButton boton_cambiar_piso;
     boolean es_piso2 = false;
+
     public PanelAsientos(Buses bus_seleccionado, String nombre, String fecha, String ruta_final, int precio_ruta, int seleccion) {
         this.nombre = nombre;
         this.fecha = fecha;
         this.ruta_final = ruta_final;
         this.precio_ruta = precio_ruta;
         this.setBackground(new Color(82, 5, 123));
-        this.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
 
         this.seleccion = seleccion;
         // -------------- Configurar Panel ---------------------
