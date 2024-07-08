@@ -38,7 +38,7 @@ Estas librerias son las encargadas del manejo de las fechas y una forma mas este
 3. ### Compras
    Una vez habiendo decidido la ruta de viaje, se le dispondra una cantidad de buses dsiponibles para ese día (Tambien puede comprar un boleto para un bus que viaje el mismo día) donde los buses se diferencian por su tamaño (uno o dos pisos). Una vez seleccionas el bus, puedes escoger que asiento te gusta y gustas usar ademas de que cada asiento tiene su precio adicional.
 4. ### Boletos
-   Cuando ya te decides en que asiento viajar, al momento de comprar el boleto, se te entregará un boleto con los datos de viaje, el asiento y la fecha de viaje.
+   Cuando ya te decides en que asiento viajar, al momento de comprar el boleto, se te entregará un boleto con los datos de viaje, el asiento y la fecha de viaje. Además, tu boleto quedará guardado en HistorialBoletos
 
 
 ### Patrones
